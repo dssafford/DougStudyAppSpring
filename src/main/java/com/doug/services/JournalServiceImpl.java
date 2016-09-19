@@ -1,31 +1,46 @@
 package com.doug.services;
 
-import com.doug.domain.Product;
-import com.doug.repositories.ProductRepository;
+import com.doug.domain.JournalSql;
+import com.doug.repositories.JournalSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductServiceImpl implements ProductService {
-    private ProductRepository productRepository;
+public class JournalServiceImpl implements JournalService {
+    private JournalSqlRepository journalSqlRepository;
 
     @Autowired
-    public void setProductRepository(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public void setJournalRepository(JournalSqlRepository journalSqlRepository) {
+        this.journalSqlRepository = journalSqlRepository;
     }
 
     @Override
-    public Iterable<Product> listAllProducts() {
-        return productRepository.findAll();
+    public Iterable<JournalSql> listAllJournals() {
+        return journalSqlRepository.findAll();
     }
 
     @Override
-    public Product getProductById(Integer id) {
-        return productRepository.findOne(id);
+    public JournalSql getJournalById(Integer id) {
+        return journalSqlRepository.findOne(id);
     }
 
     @Override
-    public Product saveProduct(Product product) {
-        return productRepository.save(product);
+    public JournalSql saveJournal(JournalSql journal) {
+        return journalSqlRepository.save(journal);
     }
+
+//    @Override
+//    public Iterable<Journal> listAllJournals() {
+//        return journalSqlRepository.findAll();
+//    }
+//
+//    @Override
+//    public Journal getJournalById(Integer id) {
+//        return journalSqlRepository.findOne(id);
+//    }
+//
+//    @Override
+//    public Journal saveJournal(Journal journal) {
+//        return journalSqlRepository.save(journal);
+//    }
 }

@@ -1,12 +1,13 @@
 package com.doug.services;
 
 
-import com.doug.domain.Product;
+import com.doug.domain.JournalSql;
 
-public interface ProductService {
-    Iterable<Product> listAllProducts();
+public interface JournalService {
 
-    Product getProductById(Integer id);
+    Iterable<JournalSql> listAllJournals();
 
-    Product saveProduct(Product product);
+    JournalSql getJournalById(Integer id);
+
+    JournalSql saveJournal(JournalSql journal);
 }

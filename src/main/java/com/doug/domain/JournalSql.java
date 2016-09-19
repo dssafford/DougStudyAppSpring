@@ -1,33 +1,36 @@
 package com.doug.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by Doug on 8/19/16.
  */
 
-@Document
-public class Journal {
+@Entity
+@Table(name="my_table")
+public class JournalSql {
+
+
 	@Id
-	private String id;
-	private Date myDate;
-	private String machine;
-	private String directory;
-	private String project;
-	private String comments;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 
-
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 
 	public Date getMyDate() {
@@ -70,26 +73,16 @@ public class Journal {
 		this.comments = comments;
 	}
 
+	@Version
+	private Integer version;
+
+	private Date myDate;
+	private String machine;
+	private String directory;
+	private String project;
+	private String comments;
 
 
-
-	public Journal() {}
-
-	public Journal(Date myDate, String machine, String directory, String project, String comments) {
-		this.myDate = myDate;
-		this.machine = machine;
-		this.directory = directory;
-		this.project = project;
-		this.comments = comments;
+	public JournalSql() {
 	}
-
-	@Override
-	public String toString() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
-		return String.format(
-				  "Journal[id=%s, date=dateFormat.format(myDate), machine='%s', directory='%s'], project='$s', comments='%s'",
-				  id, machine, directory, project, comments);
-	}
-
 }

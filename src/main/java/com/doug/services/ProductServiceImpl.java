@@ -1,7 +1,7 @@
-package guru.springframework.services;
+package com.doug.services;
 
-import guru.springframework.domain.Product;
-import guru.springframework.repositories.ProductRepository;
+import com.doug.domain.Product;
+import com.doug.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

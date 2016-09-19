@@ -1,4 +1,4 @@
-package com.doug;
+package com.doug.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

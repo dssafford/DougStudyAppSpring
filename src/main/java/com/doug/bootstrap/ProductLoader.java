@@ -1,7 +1,7 @@
-package guru.springframework.bootstrap;
+package com.doug.bootstrap;
 
-import guru.springframework.domain.Product;
-import guru.springframework.repositories.ProductRepository;
+import com.doug.domain.Product;
+import com.doug.repositories.ProductRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;

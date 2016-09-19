@@ -1,5 +1,6 @@
-package com.doug;
+package com.doug.configuration;
 
+import com.doug.repositories.RepositoryPackage;
 import com.mongodb.MongoClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

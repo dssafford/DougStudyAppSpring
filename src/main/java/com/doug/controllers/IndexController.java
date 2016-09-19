@@ -1,4 +1,4 @@
-package guru.springframework.controllers;
+package com.doug.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
     @RequestMapping("/")
     String index(){
-        return "index";
+        return "journalindex";
     }
 }

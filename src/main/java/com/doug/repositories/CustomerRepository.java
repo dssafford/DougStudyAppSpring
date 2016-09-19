@@ -1,5 +1,6 @@
-package com.doug;
+package com.doug.repositories;
 
+import com.doug.domain.Customer;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;

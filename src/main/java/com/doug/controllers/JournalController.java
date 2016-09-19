@@ -1,7 +1,7 @@
 package com.doug.controllers;
 
-import com.doug.domain.Product;
-import com.doug.services.ProductService;
+import com.doug.domain.JournalSql;
+import com.doug.services.JournalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,46 +10,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class ProductController {
+public class JournalController {
 
-    private ProductService productService;
+    private JournalService journalService;
 
     @Autowired
-    public void setProductService(ProductService productService) {
-        this.productService = productService;
+    public void setJournalService(JournalService journalService) {
+        this.journalService = journalService;
     }
 
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
+    @RequestMapping(value = "/journals", method = RequestMethod.GET)
     public String list(Model model){
-        model.addAttribute("products", productService.listAllProducts());
-        System.out.println("Returning rpoducts:");
-        return "products";
+        model.addAttribute("journals", journalService.listAllJournals());
+        System.out.println("Returning dide rpoducts:");
+        return "journals";
     }
 
-    @RequestMapping("product/{id}")
+    @RequestMapping("journal/{id}")
     public String showProduct(@PathVariable Integer id, Model model){
-        model.addAttribute("product", productService.getProductById(id));
-        return "productshow";
+        model.addAttribute("journal", journalService.getJournalById(id));
+        return "journalshow";
     }
 
-    @RequestMapping("product/edit/{id}")
+    @RequestMapping("journal/edit/{id}")
     public String edit(@PathVariable Integer id, Model model){
-        model.addAttribute("product", productService.getProductById(id));
-        return "productform";
+        model.addAttribute("journal", journalService.getJournalById(id));
+        return "journalform";
     }
 
-    @RequestMapping("product/new")
-    public String newProduct(Model model){
-        model.addAttribute("product", new Product());
-        return "productform";
+    @RequestMapping("journal/new")
+    public String newJournal(Model model){
+        model.addAttribute("journal", new JournalSql());
+        return "journalform";
     }
 
-    @RequestMapping(value = "product", method = RequestMethod.POST)
-    public String saveProduct(Product product){
+    @RequestMapping(value = "journal", method = RequestMethod.POST)
+    public String saveProduct(JournalSql journal){
 
-        productService.saveProduct(product);
+        journalService.saveJournal(journal);
 
-        return "redirect:/product/" + product.getId();
+        return "redirect:/journal/" + journal.getId();
     }
 
 }

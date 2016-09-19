@@ -1,4 +1,4 @@
-package com.doug;
+package com.doug.domain;
 
 import org.springframework.data.annotation.Id;
 

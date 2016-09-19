@@ -1,4 +1,4 @@
-package guru.springframework.domain;
+package com.doug.domain;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

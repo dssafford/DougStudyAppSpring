@@ -1,5 +1,8 @@
 package com.doug;
 
+import com.doug.configuration.SpringMongoConfiguration;
+import com.doug.domain.Customer;
+import com.doug.repositories.CustomerRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +15,7 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SpringMongoConfiguration.class)
-public class NewDataTests {
+public class CustomerDataTests {
 
 	@Autowired
 	CustomerRepository customerRepository;

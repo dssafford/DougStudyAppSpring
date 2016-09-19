@@ -1,4 +1,4 @@
-package com.doug;
+package com.doug.repositories;
 
 public class RepositoryPackage {
 
