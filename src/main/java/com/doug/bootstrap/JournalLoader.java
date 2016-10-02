@@ -12,6 +12,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+//import com.doug.domain.JournalSql;
+
 @Component
 public class JournalLoader implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -36,6 +38,36 @@ public class JournalLoader implements ApplicationListener<ContextRefreshedEvent>
 		journalSqlRepository.save(journal);
 
 		log.info("Saved journal - id: " + journal.getId());
+
+		journal = getJournal();
+		journal.setMachine("imac");
+		journal.setDirectory("directory");
+		journal.setProject("node");
+		journal.setComments("my second comments here");
+		journalSqlRepository.save(journal);
+
+
+		log.info("Saved Mug - id:" + journal.getId());
+
+		journal = getJournal();
+		journal.setMachine("imac");
+		journal.setDirectory("directory");
+		journal.setProject("node");
+		journal.setComments("my second comments here");
+		journalSqlRepository.save(journal);
+
+
+		log.info("Saved Mug - id:" + journal.getId());
+
+		journal = getJournal();
+		journal.setMachine("imac");
+		journal.setDirectory("directory");
+		journal.setProject("node");
+		journal.setComments("my second comments here");
+		journalSqlRepository.save(journal);
+
+
+		log.info("Saved Mug - id:" + journal.getId());
 
 		journal = getJournal();
 		journal.setMachine("imac");

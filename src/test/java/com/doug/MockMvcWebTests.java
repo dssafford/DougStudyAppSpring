@@ -33,8 +33,9 @@ public class MockMvcWebTests {
   @Test
   public void redirectFromRoot() throws Exception {
     mockMvc.perform(get("/"))
-            .andExpect(status().is3xxRedirection())
-            .andExpect(header().string("Location", "/login"));
+            .andExpect(status().is2xxSuccessful());
+
+            //.andExpect(header().string("Location", "/journalindex"));
   }
 
   @Test

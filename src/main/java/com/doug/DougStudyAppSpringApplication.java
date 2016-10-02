@@ -2,7 +2,6 @@ package com.doug;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -11,7 +10,7 @@ import java.util.Date;
 
 
 @SpringBootApplication
-public class DougStudyAppSpringApplication extends WebMvcConfigurerAdapter {
+public class DougStudyAppSpringApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DougStudyAppSpringApplication.class, args);
@@ -25,8 +24,13 @@ public class DougStudyAppSpringApplication extends WebMvcConfigurerAdapter {
 		Calendar cal = Calendar.getInstance();
 		System.out.println("HEYYYYYY======================" + dateFormat.format(cal.getTime()));
 
-
 	}
+
+//	@Override
+//	public void addViewControllers(ViewControllerRegistry registry) {
+//		registry.addRedirectViewController("/", "/journalindex");
+//	}
+
 
 //	@Override
 //	public void addViewControllers(ViewControllerRegistry registry) {

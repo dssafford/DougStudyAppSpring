@@ -2,7 +2,7 @@ package com.doug;
 
 import com.doug.configuration.SpringMongoConfiguration;
 import com.doug.domain.Journal;
-import com.doug.repositories.JournalRepository;
+import com.doug.repositories.JournalMongoRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,41 +24,41 @@ import static org.junit.Assert.assertEquals;
 public class JournalDataTests {
 
 	@Autowired
-	JournalRepository journalRepository;
+	JournalMongoRepository JournalMongoRepository;
 
 
 	static final int QTY = 5;
 
 	@Before
 	public void init() {
-		journalRepository.deleteAll();
+		JournalMongoRepository.deleteAll();
 		Date myDate = new Date();
 
-		journalRepository.save(new Journal(myDate, "mbp13", "directory", "project", "comments"));
-		journalRepository.save(new Journal(myDate, "machine", "directory", "project", "comments"));
-		journalRepository.save(new Journal(myDate, "mbp13", "directory", "NodeMongo", "comments"));
-		journalRepository.save(new Journal(myDate, "machine", "directory", "project", "comments"));
-		journalRepository.save(new Journal(myDate, "mbp13", "directory", "project", "comments"));
+		JournalMongoRepository.save(new Journal(myDate, "mbp13", "directory", "project", "comments"));
+		JournalMongoRepository.save(new Journal(myDate, "machine", "directory", "project", "comments"));
+		JournalMongoRepository.save(new Journal(myDate, "mbp13", "directory", "NodeMongo", "comments"));
+		JournalMongoRepository.save(new Journal(myDate, "machine", "directory", "project", "comments"));
+		JournalMongoRepository.save(new Journal(myDate, "mbp13", "directory", "project", "comments"));
 
 
 	}
 
 	@Test
 	public void HappyTest() {
-		List<Journal> list = journalRepository.findAll();
+		List<Journal> list = JournalMongoRepository.findAll();
 		assertEquals(QTY, list.size());
 	}
 
 	@Test
 	public void findDocumentsForMachine() throws Exception {
-		List<Journal> list = journalRepository.findByMachine("mbp13");
+		List<Journal> list = JournalMongoRepository.findByMachine("mbp13");
 		assertEquals(3, list.size());
 
 	}
 
 	@Test
 	public void findDocumentsForProject() throws Exception {
-		List<Journal> list = journalRepository.findByProject("NodeMongo");
+		List<Journal> list = JournalMongoRepository.findByProject("NodeMongo");
 		assertEquals(1, list.size());
 
 	}
