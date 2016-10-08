@@ -19,7 +19,7 @@ public class JournalLoader implements ApplicationListener<ContextRefreshedEvent>
 
 	private JournalSqlRepository journalSqlRepository;
 
-	private Logger log = Logger.getLogger(ProductLoader.class);
+	private Logger log = Logger.getLogger(JournalLoader.class);
 	private JournalSql journal;
 
 	@Autowired

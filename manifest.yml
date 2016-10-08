@@ -1,0 +1,8 @@
+---
+applications:
+- name: doug-study-app
+  host: doug-study-app
+  memory: 1G
+  instances: 1
+  disk_quota: 512M
+  domain: cfapps.io

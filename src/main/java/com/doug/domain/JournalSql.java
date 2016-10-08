@@ -9,6 +9,7 @@ import java.util.Date;
  */
 
 @Entity
+@Table(name = "journals")
 public class JournalSql {
 
 
