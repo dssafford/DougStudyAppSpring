@@ -20,6 +20,7 @@
                 <th>Comments</th>
                 <th>View</th>
                 <th>Edit</th>
+                <th>Delete</th>
             </tr>
             <tr th:each="journal : ${journals}">
                 <td th:text="${journal.id}"><a href="/journals/${journal.id}">Id</a></td>
@@ -29,11 +30,14 @@
                 <td th:text="${journal.comments}">comments</td>
                 <td><a th:href="${ '/journal/' + journal.id}">View</a></td>
                 <td><a th:href="${'/journal/edit/' + journal.id}">Edit</a></td>
+                <td><a th:href="${'/journal/delete/' + journal.id}">Delete</a></td>
             </tr>
         </table>
 
     </div>
 </div>
-
+<div class="container" th:replace="fragments/footer :: footer">
+    <p>footer</p>
+</div>
 </body>
 </html>

@@ -38,6 +38,13 @@ public class JournalController {
         return "journalform";
     }
 
+    @RequestMapping("journal/delete/{id}")
+    public String delete(@PathVariable Integer id, Model model){
+        model.addAttribute("journal", journalService.getJournalById(id));
+
+        return "journalform";
+    }
+
     @RequestMapping("journal/new")
     public String newJournal(Model model){
         model.addAttribute("journal", new JournalSql());

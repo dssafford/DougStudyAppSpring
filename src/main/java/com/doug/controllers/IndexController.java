@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
     @RequestMapping("/")
     String index(){
-        return "journalindex";
+        return "index";
+    }
+
+    @RequestMapping("secured")
+    public String secured(){
+        return "secured";
     }
 }
