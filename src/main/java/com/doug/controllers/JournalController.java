@@ -69,7 +69,7 @@ public class JournalController {
 
         journalService.saveJournal(journal);
 
-        return "redirect:/journal/" + journal.getId();
+        return "redirect:/journal/list";
 
     }
 

@@ -23,7 +23,6 @@ public class JournalCommand {
 
 	private Integer version;
 
-	@NotEmpty
 	private Integer id;
 
 	public Integer getId() {
@@ -35,19 +34,19 @@ public class JournalCommand {
 	}
 
 	@NotEmpty
-	@Size(min = 2, max = 2)
+	@Size(min = 2, max = 20)
 	private String machine;
 
 	@NotEmpty
-	@Size(min = 2, max = 2)
+	@Size(min = 2, max = 50)
 	private String directory;
 
 	@NotEmpty
-	@Size(min = 2, max = 2)
+	@Size(min = 2, max = 50)
 	private String project;
 
 	@NotEmpty
-	@Size(min = 2, max = 2)
+	@Size(min = 2, max = 200)
 	private String comments;
 
 	public Date getMyDate() {
