@@ -18,11 +18,11 @@ public class DougStudyAppSpringApplication {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		//get current date time with Date()
 		Date date = new Date();
-		System.out.println("DATE====================" + dateFormat.format(date));
+		System.out.println("DATE ====================" + dateFormat.format(date));
 
 		//get current date time with Calendar()
 		Calendar cal = Calendar.getInstance();
-		System.out.println("HEYYYYYY======================" + dateFormat.format(cal.getTime()));
+		System.out.println("HEYYYYYY ======================" + dateFormat.format(cal.getTime()));
 
 	}
 

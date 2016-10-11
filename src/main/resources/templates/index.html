@@ -1,15 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
 
-    <title>Doug Study App JournalIndex Page</title>
+    <title>Doug Safford Study App</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-    <!--/*/ <th:block th:include="fragments/headerincJournal :: head"></th:block> /*/-->
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <link href="../static/css/spring-core.css"
+          th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
 </head>
 <body>
-
 <div class="container">
-    <!--/*/ <th:block th:include="fragments/headerJournal :: header"></th:block> /*/-->
+    <h1>Hey Dude</h1>
+
+    <h2>This is my Study App Index Page</h2>
+
+    <ul>
+        <li><a href="/login">Login</a></li>
+        <li><a href="journal/list">Entries</a></li>
+        <li><a href="journal/new">New Entry</a></li>
+        <li><a href="/checkout">Checkout</a></li>
+        <li><a href="user/list">Users</a></li>
+        <li><a href="secured.html">Security Status</a></li>
+    </ul>
+
 </div>
+
 </body>
 </html>

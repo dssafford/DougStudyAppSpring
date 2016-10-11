@@ -12,7 +12,6 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-//import com.doug.domain.JournalSql;
 
 @Component
 public class JournalLoader implements ApplicationListener<ContextRefreshedEvent> {
@@ -34,50 +33,50 @@ public class JournalLoader implements ApplicationListener<ContextRefreshedEvent>
 		journal.setMachine("mbp13");
 		journal.setDirectory("directory");
 		journal.setProject("SpringBootLearning");
-		journal.setComments("my comments here");
+		journal.setComments("this is the root of my spring boot learning, lots of great stuff here");
 		journalSqlRepository.save(journal);
 
-		log.info("Saved journal - id: " + journal.getId());
+		log.info("Saved record - id: " + journal.getId());
+
+		journal = getJournal();
+		journal.setMachine("mbp13");
+		journal.setDirectory("/workspace/springbootlearning/springmvc");
+		journal.setProject("Spring - Java");
+		journal.setComments("good mvc example from spring guru");
+		journalSqlRepository.save(journal);
+
+
+		log.info("Saved record - id:" + journal.getId());
 
 		journal = getJournal();
 		journal.setMachine("imac");
-		journal.setDirectory("directory");
+		journal.setDirectory("/nodework/DougStudyApp");
 		journal.setProject("node");
-		journal.setComments("my second comments here");
+		journal.setComments("Study app in node/mongo, deployed to CF");
 		journalSqlRepository.save(journal);
 
 
-		log.info("Saved Mug - id:" + journal.getId());
+		log.info("Saved record - id:" + journal.getId());
 
 		journal = getJournal();
 		journal.setMachine("imac");
-		journal.setDirectory("directory");
+		journal.setDirectory("/gitwork/git-exampleDoug");
 		journal.setProject("node");
-		journal.setComments("my second comments here");
+		journal.setComments("simple git example of basic operations");
 		journalSqlRepository.save(journal);
 
 
-		log.info("Saved Mug - id:" + journal.getId());
+		log.info("Saved record - id:" + journal.getId());
 
 		journal = getJournal();
-		journal.setMachine("imac");
-		journal.setDirectory("directory");
-		journal.setProject("node");
-		journal.setComments("my second comments here");
+		journal.setMachine("mbp13");
+		journal.setDirectory("~/workspace/springbootlearning/sfgthymeleaf");
+		journal.setProject("SfgthymeleafDoug");
+		journal.setComments("good example of using thymeleaf");
 		journalSqlRepository.save(journal);
 
 
-		log.info("Saved Mug - id:" + journal.getId());
-
-		journal = getJournal();
-		journal.setMachine("imac");
-		journal.setDirectory("directory");
-		journal.setProject("node");
-		journal.setComments("my second comments here");
-		journalSqlRepository.save(journal);
-
-
-		log.info("Saved Mug - id:" + journal.getId());
+		log.info("Saved record - id:" + journal.getId());
 	}
 
 	private JournalSql getJournal() {

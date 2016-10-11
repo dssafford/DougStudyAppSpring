@@ -1,13 +1,17 @@
 package com.doug.controllers;
 
+import com.doug.commands.JournalCommand;
 import com.doug.domain.JournalSql;
 import com.doug.services.JournalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.validation.Valid;
 
 @Controller
 public class JournalController {
@@ -19,7 +23,7 @@ public class JournalController {
         this.journalService = journalService;
     }
 
-    @RequestMapping(value = "/journals", method = RequestMethod.GET)
+    @RequestMapping(value = "/journal/list", method = RequestMethod.GET)
     public String list(Model model){
         model.addAttribute("journals", journalService.listAllJournals());
         System.out.println("Returning dide rpoducts:");
@@ -39,24 +43,42 @@ public class JournalController {
     }
 
     @RequestMapping("journal/delete/{id}")
-    public String delete(@PathVariable Integer id, Model model){
-        model.addAttribute("journal", journalService.getJournalById(id));
+    public String delete(@PathVariable Integer id){
+        journalService.deleteJournal(id);
 
-        return "journalform";
+        return "redirect:/journal/list";
     }
 
-    @RequestMapping("journal/new")
+    @RequestMapping(value = "/journal/new", method = RequestMethod.GET)
     public String newJournal(Model model){
+
         model.addAttribute("journal", new JournalSql());
-        return "journalform";
+        model.addAttribute("journalCommand", new JournalCommand());
+
+
+        return "journalformnew";
     }
 
-    @RequestMapping(value = "journal", method = RequestMethod.POST)
-    public String saveProduct(JournalSql journal){
+    @RequestMapping(value = "/dojournal", method = RequestMethod.POST)
+    public String doJournal(@Valid JournalCommand journalCommand, BindingResult bindingResult,
+                            JournalSql journal){
+
+        if (bindingResult.hasErrors()) {
+            return "journalformnew";
+        }
 
         journalService.saveJournal(journal);
 
         return "redirect:/journal/" + journal.getId();
+
     }
+
+//    @RequestMapping(value = "journal", method = RequestMethod.POST)
+//    public String saveProduct(JournalSql journal){
+//
+//        journalService.saveJournal(journal);
+//
+//        return "redirect:/journal/" + journal.getId();
+//    }
 
 }

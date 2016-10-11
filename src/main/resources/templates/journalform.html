@@ -11,7 +11,6 @@
     <!--/*/ <th:block th:include="fragments/headerJournal :: header"></th:block> /*/-->
 
     <h2>Journal Details</h2>
-    <div>
         <form class="form-horizontal" th:object="${journal}" th:action="@{/journal}" method="post">
             <input type="hidden" th:field="*{id}"/>
             <input type="hidden" th:field="*{version}"/>
@@ -51,7 +50,6 @@
             </div>
         </form>
     </div>
-</div>
 
 </body>
 </html>

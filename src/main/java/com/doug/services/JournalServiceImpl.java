@@ -29,6 +29,12 @@ public class JournalServiceImpl implements JournalService {
         return journalSqlRepository.save(journal);
     }
 
+    @Override
+    public void deleteJournal(Integer id) {
+        journalSqlRepository.delete(id);
+    }
+
+
 //    @Override
 //    public Iterable<Journal> listAllJournals() {
 //        return journalSqlRepository.findAll();

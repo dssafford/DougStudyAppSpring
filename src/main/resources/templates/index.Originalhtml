@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+    <title>Doug Study App JournalIndex Page</title>
+
+    <!--/*/ <th:block th:include="fragments/headerincJournal :: head"></th:block> /*/-->
+</head>
+<body>
+
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/headerJournal :: header"></th:block> /*/-->
+</div>
+</body>
+</html>

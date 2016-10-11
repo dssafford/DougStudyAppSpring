@@ -10,4 +10,6 @@ public interface JournalService {
     JournalSql getJournalById(Integer id);
 
     JournalSql saveJournal(JournalSql journal);
+
+    void deleteJournal(Integer id);
 }

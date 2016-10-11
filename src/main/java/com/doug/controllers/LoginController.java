@@ -29,13 +29,13 @@ public class LoginController {
         return "logout-success";
     }
 
-//   @RequestMapping(value = "/dologin", method = RequestMethod.POST)
+   //@RequestMapping(value = "/dologin", method = RequestMethod.POST)
     public String doLogin(@Valid LoginCommand loginCommand, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             return "loginform";
         }
 
-        return "redirect:journals";
+        return "redirect:journal/list";
     }
 }
