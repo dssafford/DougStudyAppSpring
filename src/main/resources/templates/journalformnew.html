@@ -4,11 +4,11 @@
 
     <title>Doug Study App</title>
 
-    <!--/*/ <th:block th:include="fragments/headerincJournal :: head"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
 <div class="container">
-    <!--/*/ <th:block th:include="fragments/headerJournal :: header"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 
     <h2>New Journal Details</h2>
     <form class="form-horizontal" th:object="${journalCommand}" th:action="@{/dojournal}" method="post">

@@ -5,11 +5,11 @@
 
     <title>Doug Study App</title>
 
-    <!--/*/ <th:block th:include="fragments/headerincJournal :: head"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
 <div class="container">
-    <!--/*/ <th:block th:include="fragments/headerJournal :: header"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
     <div th:if="${not #lists.isEmpty(journals)}">
         <h2>Journal List</h2>
         <table class="table table-striped">
