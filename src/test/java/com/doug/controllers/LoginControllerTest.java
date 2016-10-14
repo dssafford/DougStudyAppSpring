@@ -13,28 +13,29 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Created by Doug on 10/13/16.
  */
-public class DougControllerTest {
+public class LoginControllerTest {
 	private MockMvc mockMvc;
 
-	private DougController dougController;
+	private LoginController loginController;
 
 	@Before
 	public void setup(){
-		dougController = new DougController();
-		//mockMvc = MockMvcBuilders.standaloneSetup(dougController).build();
+		loginController = new LoginController();
+//		mockMvc = MockMvcBuilders.standaloneSetup(loginController).build();
+
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setPrefix("/templates");
 
-		mockMvc = MockMvcBuilders.standaloneSetup(dougController)
+		mockMvc = MockMvcBuilders.standaloneSetup(loginController)
 				  .setViewResolvers(viewResolver)
 				  .build();
 	}
 
 	@Test
 	public void testIndex() throws Exception{
-		mockMvc.perform(get("/doug"))
+		mockMvc.perform(get("/login"))
 				  .andExpect(status().isOk())
-				  .andExpect(view().name("doug"));
+				  .andExpect(view().name("login"));
 	}
 
 

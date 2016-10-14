@@ -26,12 +26,11 @@ public class JournalController {
     @RequestMapping(value = "/journal/list", method = RequestMethod.GET)
     public String list(Model model){
         model.addAttribute("journals", journalService.listAllJournals());
-        System.out.println("Returning dide rpoducts:");
         return "journals";
     }
 
     @RequestMapping("journal/{id}")
-    public String showProduct(@PathVariable Integer id, Model model){
+    public String showJournal(@PathVariable Integer id, Model model){
         model.addAttribute("journal", journalService.getJournalById(id));
         return "journalshow";
     }
@@ -39,7 +38,7 @@ public class JournalController {
     @RequestMapping("journal/edit/{id}")
     public String edit(@PathVariable Integer id, Model model){
         model.addAttribute("journal", journalService.getJournalById(id));
-        return "journalform";
+        return "journalshow";
     }
 
     @RequestMapping("journal/delete/{id}")
@@ -66,6 +65,8 @@ public class JournalController {
         if (bindingResult.hasErrors()) {
             return "journalformnew";
         }
+
+        JournalCommand savedJournal = journalService.saveJournal(journal);
 
         journalService.saveJournal(journal);
 

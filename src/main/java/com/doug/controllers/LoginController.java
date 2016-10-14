@@ -20,7 +20,7 @@ public class LoginController {
 
         model.addAttribute("loginCommand", new LoginCommand());
 
-        return "loginform";
+        return "login";
     }
 
     @RequestMapping("logout-success")
@@ -33,7 +33,7 @@ public class LoginController {
     public String doLogin(@Valid LoginCommand loginCommand, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
-            return "loginform";
+            return "login";
         }
 
         return "redirect:journal/list";
