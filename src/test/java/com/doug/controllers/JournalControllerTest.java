@@ -117,13 +117,13 @@ public class JournalControllerTest {
 				  .param("project", project)
 				  .param("comments", comments))
 				  .andExpect(status().is3xxRedirection())
-				  .andExpect(view().name("redirect:/journal/list"))
-				  .andExpect(model().attribute("journal", instanceOf(JournalSql.class)))
-				  .andExpect(model().attribute("journal", hasProperty("id", is(id))))
-				  .andExpect(model().attribute("journal", hasProperty("machine", is(machine))))
-				  .andExpect(model().attribute("journal", hasProperty("project", is(project))))
-				  .andExpect(model().attribute("journal", hasProperty("comments", is(comments))))
-				  .andExpect(model().attribute("journal", hasProperty("directory", is(directory))));
+				  .andExpect(view().name("redirect:/journal/1"))
+				  .andExpect(model().attribute("journalSql", instanceOf(JournalSql.class)))
+				  .andExpect(model().attribute("journalSql", hasProperty("id", is(id))))
+				  .andExpect(model().attribute("journalSql", hasProperty("machine", is(machine))))
+				  .andExpect(model().attribute("journalSql", hasProperty("project", is(project))))
+				  .andExpect(model().attribute("journalSql", hasProperty("comments", is(comments))))
+				  .andExpect(model().attribute("journalSql", hasProperty("directory", is(directory))));
 
 		//verify properties of bound object
 		ArgumentCaptor<JournalSql> boundJournal = ArgumentCaptor.forClass(JournalSql.class);

@@ -66,11 +66,9 @@ public class JournalController {
             return "journalformnew";
         }
 
-        JournalCommand savedJournal = journalService.saveJournal(journal);
+        JournalSql journalSql = journalService.saveJournal(journal);
 
-        journalService.saveJournal(journal);
-
-        return "redirect:/journal/list";
+        return "redirect:/journal/" + journalSql.getId();
 
     }
 
