@@ -4,6 +4,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes=DougStudyAppSpringApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ServerWebTestsDoug1 {
+public class SeleniumLearningWebTests {
 
     private static FirefoxDriver browser;
 
@@ -41,22 +42,27 @@ public class ServerWebTestsDoug1 {
         String currentUrl = browser.getCurrentUrl();
         assertEquals(baseUrl, currentUrl);
 
-//        assertEquals("BOOK TITLE by BOOK AUTHOR (ISBN: 1234567890)\n" +
-//                        "DESCRIPTION",
-//                browser.findElementByTagName("div").getText());
+
+        WebElement ds = browser.findElementsByClassName("shit").get(0);
+
+
+
+
+        assertEquals("Wowser Mammie", ds.getText());
+
 
         browser.findElementByName("username").sendKeys("BOOK TITLE");
         browser.findElementByName("password").sendKeys("BOOK AUTHOR");
 
         browser.findElementByTagName("form").submit();
 
-//        WebElement dl =
-//                browser.findElementByCssSelector("dt.bookHeadline");
-//        assertEquals("BOOK TITLE by BOOK AUTHOR (ISBN: 1234567890)",
-//                dl.getText());
-//        WebElement dt =
-//                browser.findElementByCssSelector("dd.bookDescription");
-//        assertEquals("DESCRIPTION", dt.getText());
+        WebElement dl =
+                browser.findElementByCssSelector("dt.bookHeadline");
+        assertEquals("Bookie by Baby (ISBN: booboo)",
+                dl.getText());
+        WebElement dt =
+                browser.findElementByCssSelector("dd.bookDescription");
+        assertEquals("mybook by eatshit", dt.getText());
     }
 
 
