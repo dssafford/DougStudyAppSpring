@@ -35,18 +35,30 @@ public class SeleniumLearningWebTests {
     }
 
     @Test
-    public void addBookToOneList() {
+    public void loginSubmitTest() {
+        String baseUrl = "http://localhost:" + port + "/";
+        browser.get(baseUrl);
+
+//        browser.findElementByName("username").sendKeys("user");
+//        browser.findElementByName("password").sendKeys("password");
+        browser.findElementsByLinkText("Checkout").get(0).click();
+
+
+        assertEquals("http://localhost:" + port + "/checkout", browser.getCurrentUrl());
+
+        //browser.findElementByTagName("form").submit();
+
+
+    }
+    @Test
+    public void differentWaysToUseDriverAndFindElements() {
         String baseUrl = "http://localhost:" + port + "/login";
         browser.get(baseUrl);
 
         String currentUrl = browser.getCurrentUrl();
         assertEquals(baseUrl, currentUrl);
 
-
         WebElement ds = browser.findElementsByClassName("shit").get(0);
-
-
-
 
         assertEquals("Wowser Mammie", ds.getText());
 
