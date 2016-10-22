@@ -9,7 +9,7 @@ public interface JournalService {
 
     JournalSql getJournalById(Integer id);
 
-    JournalSql saveJournal(JournalSql journal);
+    JournalSql saveOrUpdateJournal(JournalSql journal);
 
     void deleteJournal(Integer id);
 }

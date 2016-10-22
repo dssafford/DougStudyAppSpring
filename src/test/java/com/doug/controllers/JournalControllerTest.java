@@ -108,7 +108,7 @@ public class JournalControllerTest {
 		returnJournal.setDirectory(directory);
 		returnJournal.setComments(comments);
 
-		when(journalService.saveJournal(Matchers.<JournalSql>any())).thenReturn(returnJournal);
+		when(journalService.saveOrUpdateJournal(Matchers.<JournalSql>any())).thenReturn(returnJournal);
 
 		mockMvc.perform(post("/dojournal")
 				  .param("id", "1")
@@ -127,7 +127,7 @@ public class JournalControllerTest {
 
 		//verify properties of bound object
 		ArgumentCaptor<JournalSql> boundJournal = ArgumentCaptor.forClass(JournalSql.class);
-		verify(journalService).saveJournal(boundJournal.capture());
+		verify(journalService).saveOrUpdateJournal(boundJournal.capture());
 
 		assertEquals(id, boundJournal.getValue().getId());
 		assertEquals(machine, boundJournal.getValue().getMachine());

@@ -24,9 +24,25 @@ public class JournalServiceImpl implements JournalService {
         return journalSqlRepository.findOne(id);
     }
 
+//    @Override
+//    public JournalCommand
+
     @Override
-    public JournalSql saveJournal(JournalSql journal) {
-        return journalSqlRepository.save(journal);
+    public JournalSql saveOrUpdateJournal(JournalSql journal) {
+
+        if(journal.getId()==null) {
+            return journalSqlRepository.save(journal);
+        }
+
+        JournalSql updatedEntry = this.getJournalById(journal.getId());
+        updatedEntry.setId(journal.getId());
+        updatedEntry.setMachine(journal.getMachine());
+        updatedEntry.setDirectory(journal.getDirectory());
+        updatedEntry.setProject(journal.getProject());
+        updatedEntry.setComments(journal.getComments());
+
+        return journalSqlRepository.save(updatedEntry);
+
     }
 
     @Override

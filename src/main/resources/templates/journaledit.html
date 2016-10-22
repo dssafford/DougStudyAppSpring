@@ -11,12 +11,12 @@
     <th:block th:include="fragments/header :: header"></th:block>
 
     <h2>New Journal Details</h2>
-    <form class="form-horizontal" th:object="${journalCommand}" th:action="@{/editjournal}" method="post">
+    <form class="form-horizontal" th:object="${journalCommand}" th:action="@{/dojournal}" method="post">
         <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
             <p th:text="#{journalCommand.hasErrors}">Error Message</p>
         </div>
-        <input type="hidden" th:field="*{id}"/>
-        <input type="hidden" th:field="*{version}"/>
+        <!--<input type="hidden" th:field="*{id}"/>-->
+        <!--<input type="hidden" th:field="*{version}"/>-->
         <div class="form-group">
             <div class="form-group" th:class="${#fields.hasErrors('id')} ? 'form-group has-error' : 'form-group'">
                 <label class="col-sm-2 control-label">Journal Id:</label>

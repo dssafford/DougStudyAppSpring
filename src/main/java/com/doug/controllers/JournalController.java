@@ -38,7 +38,9 @@ public class JournalController {
     @RequestMapping("journal/edit/{id}")
     public String edit(@PathVariable Integer id, Model model){
         model.addAttribute("journal", journalService.getJournalById(id));
-        return "journalshow";
+        model.addAttribute("journalCommand", new JournalCommand());
+
+        return "journaledit";
     }
 
     @RequestMapping("journal/delete/{id}")
@@ -66,7 +68,7 @@ public class JournalController {
             return "journalformnew";
         }
 
-        JournalSql journalSql = journalService.saveJournal(journal);
+        JournalSql journalSql = journalService.saveOrUpdateJournal(journal);
 
         return "redirect:/journal/" + journalSql.getId();
 
