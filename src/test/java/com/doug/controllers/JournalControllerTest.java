@@ -76,7 +76,7 @@ public class JournalControllerTest {
 
 		mockMvc.perform(get("/journal/edit/1"))
 				  .andExpect(status().isOk())
-				  .andExpect(view().name("journalshow"))
+				  .andExpect(view().name("journaledit"))
 				  .andExpect(model().attribute("journal", instanceOf(JournalSql.class)));
 	}
 
