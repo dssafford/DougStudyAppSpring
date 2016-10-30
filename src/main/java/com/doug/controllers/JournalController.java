@@ -26,7 +26,7 @@ public class JournalController {
     @RequestMapping(value = "/journal/list", method = RequestMethod.GET)
     public String list(Model model){
         model.addAttribute("journals", journalService.listAllJournals());
-        return "journals";
+        return "/journal/journals";
     }
 
     @RequestMapping("journal/{id}")

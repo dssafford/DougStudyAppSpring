@@ -5,13 +5,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IndexController {
-    @RequestMapping({"/", "ext"})
-    String index(){
+
+    @RequestMapping({"/", ""})
+    public String index(){
         return "index";
     }
 
-//    @RequestMapping({"/secured", "ext"})
-//    public String secured(){
-//        return "secured";
-//    }
+    @RequestMapping("/access_denied")
+    public String notAuth(){
+        return "access_denied";
+    }
+
+    @RequestMapping("/login")
+    public String loginForm(){
+        return "login";
+    }
+
 }
