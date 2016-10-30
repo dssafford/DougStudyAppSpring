@@ -38,12 +38,13 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 //        loadProducts();
-//        loadUsersAndCustomers();
+       loadUsersAndCustomers();
 ////        loadCarts();
 ////        loadOrderHistory();
-//        loadRoles();
-//        assignUsersToDefaultRole();
-//        assignUsersToAdminRole();
+        loadRoles();
+
+        assignUsersToDefaultRole();
+        assignUsersToAdminRole();
 
     }
 
@@ -58,15 +59,6 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
                     userService.saveOrUpdate(user);
                 });
             }
-
-//            if(role.getRole().equalsIgnoreCase("ADMIN")){
-//                users.forEach(user -> {
-//                    if(user.getUsername().equals("fglenanne")){
-//                        user.addRole(role);
-//                        userService.saveOrUpdate(user);
-//                    }
-//                });
-//            }
         });
     }
 
