@@ -21,7 +21,6 @@ public class IndexControllerTest {
 	public void setup(){
 		indexController = new IndexController();
 		mockMvc = MockMvcBuilders.standaloneSetup(indexController).build();
-
 	}
 
 	@Test

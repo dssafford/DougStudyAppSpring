@@ -38,6 +38,7 @@ public class JournalControllerTest {
 		mockMvc = MockMvcBuilders.standaloneSetup(journalController).build();
 	}
 
+
 	@Test
 	public void testList() throws Exception{
 

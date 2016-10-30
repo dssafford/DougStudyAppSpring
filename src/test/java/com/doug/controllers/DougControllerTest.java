@@ -21,7 +21,7 @@ public class DougControllerTest {
 	@Before
 	public void setup(){
 		dougController = new DougController();
-		//mockMvc = MockMvcBuilders.standaloneSetup(dougController).build();
+
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setPrefix("/templates");
 

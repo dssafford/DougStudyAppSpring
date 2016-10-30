@@ -46,7 +46,7 @@ public class SeleniumLearningWebTests {
 
         assertEquals("http://localhost:" + port + "/checkout", browser.getCurrentUrl());
 
-        //browser.findElementByTagName("form").submit();
+        browser.findElementByTagName("form").submit();
 
 
     }
