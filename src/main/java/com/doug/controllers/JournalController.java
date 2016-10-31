@@ -74,12 +74,4 @@ public class JournalController {
 
     }
 
-//    @RequestMapping(value = "journal", method = RequestMethod.POST)
-//    public String saveProduct(JournalSql journal){
-//
-//        journalService.saveJournal(journal);
-//
-//        return "redirect:/journal/" + journal.getId();
-//    }
-
 }

@@ -20,12 +20,6 @@ public class User extends AbstractDomainClass  {
     private String encryptedPassword;
     private Boolean enabled = true;
 
-//    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-//    private Customer customer;
-
-//    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-//    private Cart cart;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable
     // ~ defaults to @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "user_id"),
@@ -63,23 +57,6 @@ public class User extends AbstractDomainClass  {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
-
-//    public Customer getCustomer() {
-//        return customer;
-//    }
-//
-//    public void setCustomer(Customer customer) {
-//        this.customer = customer;
-//        customer.setUser(this);
-//    }
-
-//    public Cart getCart() {
-//        return cart;
-//    }
-//
-//    public void setCart(Cart cart) {
-//        this.cart = cart;
-//    }
 
     public List<Role> getRoles() {
         return roles;

@@ -1,12 +1,9 @@
 package com.doug.services;
 
-import com.doug.repositories.UserRepository;
 import com.doug.domain.User;
-
-import com.doug.services.UserService;
+import com.doug.repositories.UserRepository;
 import com.doug.services.security.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
