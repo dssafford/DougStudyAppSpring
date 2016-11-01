@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
@@ -9,7 +9,7 @@
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
             th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
 
-    <link href="../../static/css/guru.css"
+    <link href="../../static/css/custom.css"
           th:href="@{css/guru.css}" rel="stylesheet" media="screen"/>
 </head>
 <body>
@@ -25,6 +25,9 @@
                         <li><a href="#" th:href="@{/journal/new}">Entry</a></li>
                         <li><a href="#" th:href="@{/journal/new}">Test</a></li>
                         <li><a href="#" th:href="@{/logout}">Logout</a></li>
+                        <li>Logged in as:     <div sec:authentication="name">
+                        The value of the "name" property of the authentication object should appear here.
+                    </div></li>
                     </ul>
                 </div>
             </div>

@@ -9,16 +9,16 @@
 </head>
 <body>
 <div class="container">
-    <dt class="bookHeadline">
-        <span th:text="Bookie">Title</span> by
-        <span th:text="Baby">Author</span>
-        (ISBN: <span th:text="booboo">ISBN</span>)
-    </dt>
-    <dd class="bookDescription">
-          <span th:text="mybook">Description</span> by
-        <span th:text="eatshit">
-                No description available</span>
-    </dd>
+    <!--<dt class="bookHeadline">-->
+        <!--<span th:text="Bookie">Title</span> by-->
+        <!--<span th:text="Baby">Author</span>-->
+        <!--(ISBN: <span th:text="booboo">ISBN</span>)-->
+    <!--</dt>-->
+    <!--<dd class="bookDescription">-->
+          <!--<span th:text="mybook">Description</span> by-->
+        <!--<span th:text="eatshit">-->
+                <!--No description available</span>-->
+    <!--</dd>-->
     <th:block th:include="fragments/header :: header"></th:block>
     <div th:if="${not #lists.isEmpty(journals)}">
         <h2>Journal List</h2>
