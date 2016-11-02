@@ -38,13 +38,13 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 //        loadProducts();
-       loadUsersAndCustomers();
-////        loadCarts();
-////        loadOrderHistory();
-        loadRoles();
-
-        assignUsersToDefaultRole();
-        assignUsersToAdminRole();
+//       loadUsersAndCustomers();
+//////        loadCarts();
+//////        loadOrderHistory();
+//        loadRoles();
+//
+//        assignUsersToDefaultRole();
+//        assignUsersToAdminRole();
 
     }
 

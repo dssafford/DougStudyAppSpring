@@ -29,54 +29,54 @@ public class JournalLoader implements ApplicationListener<ContextRefreshedEvent>
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 
-		journal = getJournal();
-		journal.setMachine("mbp13");
-		journal.setDirectory("directory");
-		journal.setProject("SpringBootLearning");
-		journal.setComments("this is the root of my spring boot learning, lots of great stuff here");
-		journalSqlRepository.save(journal);
-
-		log.info("Saved record - id: " + journal.getId());
-
-		journal = getJournal();
-		journal.setMachine("mbp13");
-		journal.setDirectory("/workspace/springbootlearning/springmvc");
-		journal.setProject("Spring - Java");
-		journal.setComments("good mvc example from spring guru");
-		journalSqlRepository.save(journal);
-
-
-		log.info("Saved record - id:" + journal.getId());
-
-		journal = getJournal();
-		journal.setMachine("imac");
-		journal.setDirectory("/nodework/DougStudyApp");
-		journal.setProject("node");
-		journal.setComments("Study app in node/mongo, deployed to CF");
-		journalSqlRepository.save(journal);
-
-
-		log.info("Saved record - id:" + journal.getId());
-
-		journal = getJournal();
-		journal.setMachine("imac");
-		journal.setDirectory("/gitwork/git-exampleDoug");
-		journal.setProject("node");
-		journal.setComments("simple git example of basic operations");
-		journalSqlRepository.save(journal);
-
-
-		log.info("Saved record - id:" + journal.getId());
-
-		journal = getJournal();
-		journal.setMachine("mbp13");
-		journal.setDirectory("~/workspace/springbootlearning/sfgthymeleaf");
-		journal.setProject("SfgthymeleafDoug");
-		journal.setComments("good example of using thymeleaf");
-		journalSqlRepository.save(journal);
-
-
-		log.info("Saved record - id:" + journal.getId());
+//		journal = getJournal();
+//		journal.setMachine("mbp13");
+//		journal.setDirectory("directory");
+//		journal.setProject("SpringBootLearning");
+//		journal.setComments("this is the root of my spring boot learning, lots of great stuff here");
+//		journalSqlRepository.save(journal);
+//
+//		log.info("Saved record - id: " + journal.getId());
+//
+//		journal = getJournal();
+//		journal.setMachine("mbp13");
+//		journal.setDirectory("/workspace/springbootlearning/springmvc");
+//		journal.setProject("Spring - Java");
+//		journal.setComments("good mvc example from spring guru");
+//		journalSqlRepository.save(journal);
+//
+//
+//		log.info("Saved record - id:" + journal.getId());
+//
+//		journal = getJournal();
+//		journal.setMachine("imac");
+//		journal.setDirectory("/nodework/DougStudyApp");
+//		journal.setProject("node");
+//		journal.setComments("Study app in node/mongo, deployed to CF");
+//		journalSqlRepository.save(journal);
+//
+//
+//		log.info("Saved record - id:" + journal.getId());
+//
+//		journal = getJournal();
+//		journal.setMachine("imac");
+//		journal.setDirectory("/gitwork/git-exampleDoug");
+//		journal.setProject("node");
+//		journal.setComments("simple git example of basic operations");
+//		journalSqlRepository.save(journal);
+//
+//
+//		log.info("Saved record - id:" + journal.getId());
+//
+//		journal = getJournal();
+//		journal.setMachine("mbp13");
+//		journal.setDirectory("~/workspace/springbootlearning/sfgthymeleaf");
+//		journal.setProject("SfgthymeleafDoug");
+//		journal.setComments("good example of using thymeleaf");
+//		journalSqlRepository.save(journal);
+//
+//
+//		log.info("Saved record - id:" + journal.getId());
 	}
 
 	private JournalSql getJournal() {
