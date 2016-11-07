@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
 
     <title>Doug Study App JournalIndex Page</title>
 
-     <th:block th:include="fragments/headerinc :: head"></th:block>
+    <th:block th:include="fragments/headerinc :: head"></th:block>
+
+
 </head>
+
+    <th:block th:include="fragments/header :: header"></th:block>
+
 <body>
 
-<div class="container">
-    <th:block th:include="fragments/header :: header"></th:block>
-</div>
+
 <div class="container">
     <h1>Hey Dude</h1>
 
@@ -25,7 +28,6 @@
         <li><a href="secured.html">Security Status</a></li>
         <li><a href="/registration">Registration</a></li>
         <li><a href="/logout">Logout</a></li>
-
 
     </ul>
 

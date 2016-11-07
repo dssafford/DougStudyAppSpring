@@ -1,0 +1,30 @@
+body {
+	background: url('../images/bg.jpg') no-repeat center center fixed;
+	background-size: cover;
+	font-family: arial,helvetica,sans-serif;
+}
+
+.bookHeadline {
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+.bookDescription {
+	font-size: 10pt;
+}
+
+.doug {
+	font-size: 32pt;
+	font-weight: bold;
+}
+
+label {
+	font-weight: bold;
+}
+
+.jumbotron {
+
+	height: 200px;
+	color: black;
+	text-shadow: #444 0 1px 1px;
+}
