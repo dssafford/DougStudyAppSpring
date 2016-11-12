@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Register Account</title>
-    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    <th:block th:include="fragments/headerinc :: head"></th:block>
 </head>
 
 <body>
-
+<th:block th:include="fragments/headerworking :: headerworking"></th:block>
 <div class="container">
-    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-
     <div>
         <form class="form-horizontal" th:object="${registrationForm}" method="POST" th:action="@{/registration}">
             <h2 class="formHeader">Create your account</h2>
