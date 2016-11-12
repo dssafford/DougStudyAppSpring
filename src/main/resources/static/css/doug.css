@@ -3,18 +3,24 @@ body {
 	background-size: cover;
 	//font-family: arial,helvetica,sans-serif;
 }
+/*body {*/
+	/*!*color: #333;*!*/
+	/*!*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*!*/
+	/*!*font-size: 14px;*!*/
+	/*line-height: 1.42857;*/
+/*}*/
+
+
 .jumbotron {
 	text-align: center;
 	height: 130px;
-	background-color: #ac2925;
+	/*background: green;*/
+	color: inherit;
+	font-size: 14px;
+	background-color:coral !important;
 }
 
-body {
-	color: #333;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	line-height: 1.42857;
-}
+
 
 .links {
 	color: cyan;
