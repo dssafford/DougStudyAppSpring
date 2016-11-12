@@ -47,6 +47,12 @@ public class IndexController {
         return "/user/registration";
     }
 
+    @RequestMapping(value = "/doug", method = RequestMethod.GET)
+    public String doug(Model model) {
+        model.addAttribute("userForm", new User());
+
+        return "/user/doug";
+    }
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") UserCommand userCommand,
                                BindingResult bindingResult, Model model, User user) {
