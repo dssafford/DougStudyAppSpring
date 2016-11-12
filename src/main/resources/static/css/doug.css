@@ -14,10 +14,9 @@ body {
 .jumbotron {
 	text-align: center;
 	height: 130px;
-	/*background: green;*/
-	color: inherit;
-	font-size: 14px;
-	background-color:coral !important;
+	color: whitesmoke !important;
+
+	background: transparent !important;
 }
 
 
