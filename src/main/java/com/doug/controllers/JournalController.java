@@ -57,7 +57,7 @@ public class JournalController {
         model.addAttribute("journalCommand", new JournalCommand());
 
 
-        return "journalformnew";
+        return "journal/journalformnew";
     }
 
     @RequestMapping(value = "/dojournal", method = RequestMethod.POST)

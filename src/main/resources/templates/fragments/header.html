@@ -29,8 +29,12 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">Links <span class="caret"></span></a>
                             <ul class="dropdown-menu">
+                                <li><a href="#" th:href="@{/login}">Login</a></li>
                                 <li><a href="#" th:href="@{/journal/list}">List Entries</a></li>
                                 <li><a href="#" th:href="@{/journal/new}">Entry</a></li>
+                                <li><a href="#" th:href="@{/checkout}">Checkout</a></li>
+                                <li><a href="#" th:href="@{/user/list}">Users</a></li>
+                                <li><a href="#" th:href="@{/registration}">Registration</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Separated link</a></li>
                                 <li><a href="#" th:href="@{/logout}">Logout</a></li>
@@ -38,11 +42,12 @@
                         </li>
                     </ul>
                     <!--</div>-->
-                    <div class="navbar-text">Signed in as:</div>
-                    <div class="navbar-text" sec:authentication="name"></div>
+                    <!--<div class="navbar-text">Signed in as:</div>-->
+                    <!--<div class="navbar-text" sec:authentication="name"></div>-->
+                    <!--<p class="navbar-text">Signed in as<div class="navbar-text" sec:authentication="name"></div></p>-->
                     <div th:if="${#authorization.expression('isAnonymous()')}">
                         <form class="navbar-form navbar-right" role="search" th:action="@{/registration}">
-                            <div class="navbar-text">Signed in as:</div>
+                            <div class="navbar-text" text-align="right">Signed in as:</div>
                             <div class="navbar-text" sec:authentication="name"></div>
 
 

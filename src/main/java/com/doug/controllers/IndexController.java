@@ -58,7 +58,7 @@ public class IndexController {
                                BindingResult bindingResult, Model model, User user) {
 
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "/user/registration";
         }
 
         userService.saveOrUpdate(user);
