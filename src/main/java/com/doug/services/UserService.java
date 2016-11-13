@@ -9,4 +9,6 @@ public interface UserService extends CRUDService<User> {
 
     User findByUserName(String userName);
 
+    Iterable<User> listAllUsers();
+
 }
