@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
+      xmlns:margin-left="http://www.w3.org/1999/xhtml" xmlns:margin-right="http://www.w3.org/1999/xhtml">
 <head lang="en">
     <th:block th:include="fragments/headerinc :: head"></th:block>
 </head>
@@ -45,14 +46,20 @@
                     <!--<div class="navbar-text">Signed in as:</div>-->
                     <!--<div class="navbar-text" sec:authentication="name"></div>-->
                     <!--<p class="navbar-text">Signed in as<div class="navbar-text" sec:authentication="name"></div></p>-->
+                    <div th:if="${#authorization.expression('isAnonymous()')== false}">
+                        <div class="navbar-form navbar-right">
+                            <div class="navbar-text" >Signed in as:</div>
+                            <div class="navbar-text" sec:authentication="name"></div>
+
+                        </div>
+                    </div>
+
                     <div th:if="${#authorization.expression('isAnonymous()')}">
                         <form class="navbar-form navbar-right" role="search" th:action="@{/registration}">
-                            <div class="navbar-text" text-align="right">Signed in as:</div>
-                            <div class="navbar-text" sec:authentication="name"></div>
 
 
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="email"/>
+                                <input type="text" class="form-control" placeholder="username"/>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="password"/>

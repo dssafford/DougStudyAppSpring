@@ -5,46 +5,51 @@
 
     <title>Doug Study App</title>
 
-   <th:block th:include="fragments/headerinc :: head"></th:block>
+    <th:block th:include="fragments/headerinc :: head"></th:block>
 </head>
 <body>
 <div class="container">
     <!--<dt class="bookHeadline">-->
-        <!--<span th:text="Bookie">Title</span> by-->
-        <!--<span th:text="Baby">Author</span>-->
-        <!--(ISBN: <span th:text="booboo">ISBN</span>)-->
+    <!--<span th:text="Bookie">Title</span> by-->
+    <!--<span th:text="Baby">Author</span>-->
+    <!--(ISBN: <span th:text="booboo">ISBN</span>)-->
     <!--</dt>-->
     <!--<dd class="bookDescription">-->
-          <!--<span th:text="mybook">Description</span> by-->
-        <!--<span th:text="eatshit">-->
-                <!--No description available</span>-->
+    <!--<span th:text="mybook">Description</span> by-->
+    <!--<span th:text="eatshit">-->
+    <!--No description available</span>-->
     <!--</dd>-->
     <th:block th:include="fragments/header :: header"></th:block>
     <div th:if="${not #lists.isEmpty(journals)}">
-        <h2>Journal List</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Machine</th>
-                <th>Project</th>
-                <th>Directory</th>
-                <th>Comments</th>
-                <th>View</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            <tr th:each="journal : ${journals}">
-                <td th:text="${journal.id}"><a href="/journals/${journal.id}">Id</a></td>
-                <td th:text="${journal.machine}">machine</td>
-                <td th:text="${journal.project}">project</td>
-                <td th:text="${journal.directory}">directory</td>
-                <td th:text="${journal.comments}">comments</td>
-                <td><a th:href="${ '/journal/' + journal.id}">View</a></td>
-                <td><a th:href="${'/journal/edit/' + journal.id}">Edit</a></td>
-                <td><a th:href="${'/journal/delete/' + journal.id}">Delete</a></td>
-            </tr>
-        </table>
+        <h2 class="formHeader">Journal List</h2>
 
+        <div class="panel panel-default">
+            <div class="panel-body" th:bgcolor="white">A Basic Panel
+
+                <table class="table table-bordered">
+                    <tr>
+                        <th>ID</th>
+                        <th>Machine</th>
+                        <th>Project</th>
+                        <th>Directory</th>
+                        <th>Comments</th>
+                        <th>View</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr th:each="journal : ${journals}">
+                        <td th:text="${journal.id}"><a href="/journals/${journal.id}">Id</a></td>
+                        <td th:text="${journal.machine}">machine</td>
+                        <td th:text="${journal.project}">project</td>
+                        <td th:text="${journal.directory}">directory</td>
+                        <td th:text="${journal.comments}">comments</td>
+                        <td><a th:href="${ '/journal/' + journal.id}">View</a></td>
+                        <td><a th:href="${'/journal/edit/' + journal.id}">Edit</a></td>
+                        <td><a th:href="${'/journal/delete/' + journal.id}">Delete</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 <div class="container" th:replace="fragments/footer :: footer">

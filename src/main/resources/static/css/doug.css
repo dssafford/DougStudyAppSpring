@@ -10,7 +10,19 @@ body {
 	/*line-height: 1.42857;*/
 /*}*/
 
+/*.navbar-nav > li{*/
+	/*margin-left: 30px;*/
+	/*margin-right: 30px;*/
+/*}*/
 
+@media (min-width: 768px) {
+	.navbar-text {
+		/*margin-left:-3px;*/
+		/*margin-right:-3px;*/
+		 margin-right: 5px !important;
+		 margin-left: 0 !important;
+	}
+}
 .jumbotron {
 	text-align: center;
 	height: 130px;
