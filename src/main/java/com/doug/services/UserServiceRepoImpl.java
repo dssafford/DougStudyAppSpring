@@ -31,6 +31,11 @@ public class UserServiceRepoImpl implements UserService {
         this.encryptionService = encryptionService;
     }
 
+    @Override
+    public Iterable<User> listAllUsers() {
+        return userRepository.findAll();
+    }
+
 //    @Autowired
 //    public void setCustomerRepository(CustomerRepository customerRepository) {
 //        this.customerRepository = customerRepository;
@@ -56,6 +61,25 @@ public class UserServiceRepoImpl implements UserService {
         }
         return userRepository.save(domainObject);
     }
+
+    @Override
+    public User saveOrUpdateUser(User user) {
+
+        if(user.getId()==null) {
+            return userRepository.save(user);
+        }
+
+        User updatedEntry = this.getById(user.getId());
+        updatedEntry.setId(user.getId());
+        updatedEntry.setUsername(user.getUsername());
+        updatedEntry.setEncryptedPassword(user.getEncryptedPassword());
+
+
+        return userRepository.save(updatedEntry);
+
+    }
+
+
 
     @Override
     @Transactional
