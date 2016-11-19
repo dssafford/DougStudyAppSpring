@@ -9,6 +9,17 @@ public interface UserService extends CRUDService<User> {
 
     User findByUserName(String userName);
 
+<<<<<<< HEAD
     Iterable<User> listAllUsers();
 
+=======
+    User getById(Integer id);
+
+    void delete(Integer id);
+
+    Iterable<User> listAllUsers();
+
+    User saveOrUpdateUser(User user);
+
+>>>>>>> users
 }

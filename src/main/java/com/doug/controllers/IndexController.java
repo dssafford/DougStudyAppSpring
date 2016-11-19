@@ -39,6 +39,12 @@ public class IndexController {
         return "/user/login";
     }
 
+//    @RequestMapping("/dologinMenu")
+//    public String loginFormMenu(Model model){
+//        model.addAttribute("userform", new LoginCommand());
+//
+//        return "/user/login";
+//    }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -47,12 +53,13 @@ public class IndexController {
         return "/user/registration";
     }
 
-    @RequestMapping(value = "/doug", method = RequestMethod.GET)
-    public String doug(Model model) {
-        model.addAttribute("userForm", new User());
+//    @RequestMapping(value = "/doug", method = RequestMethod.GET)
+//    public String doug(Model model) {
+//        model.addAttribute("userForm", new User());
+//
+//        return "/user/doug";
+//    }
 
-        return "/user/doug";
-    }
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") UserCommand userCommand,
                                BindingResult bindingResult, Model model, User user) {

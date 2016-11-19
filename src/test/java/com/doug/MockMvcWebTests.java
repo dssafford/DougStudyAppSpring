@@ -42,7 +42,7 @@ public class MockMvcWebTests {
   public void homePage() throws Exception {
     mockMvc.perform(get("/login"))
             .andExpect(status().isOk())
-            .andExpect(view().name("login"));
+            .andExpect(view().name("/user/login"));
             //.andExpect(model().attributeExists("books"))
             //.andExpect(model().attribute("books", is(empty())));
   }

@@ -31,6 +31,9 @@ body {
 	background: transparent !important;
 }
 
+.dougOne {
+	color: #31b0d5;
+}
 
 
 .links {
@@ -112,6 +115,12 @@ img {
 label {
 	font-weight: bold;
 	color: whitesmoke;
+}
+
+.form-control-static {
+
+	color:orange;
+
 }
 
 /*.jumbotron {*/

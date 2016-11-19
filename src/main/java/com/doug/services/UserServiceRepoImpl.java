@@ -17,7 +17,6 @@ import java.util.List;
 public class UserServiceRepoImpl implements UserService {
 
     private UserRepository userRepository;
-//    private CustomerRepository customerRepository;
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -31,10 +30,10 @@ public class UserServiceRepoImpl implements UserService {
         this.encryptionService = encryptionService;
     }
 
-//    @Autowired
-//    public void setCustomerRepository(CustomerRepository customerRepository) {
-//        this.customerRepository = customerRepository;
-//    }
+    @Override
+    public Iterable<User> listAllUsers() {
+        return userRepository.findAll();
+    }
 
     @Override
     public List<?> listAll() {
@@ -58,10 +57,28 @@ public class UserServiceRepoImpl implements UserService {
     }
 
     @Override
+    public User saveOrUpdateUser(User user) {
+
+        if(user.getId()==null) {
+            return userRepository.save(user);
+        }
+
+        User updatedEntry = this.getById(user.getId());
+        updatedEntry.setId(user.getId());
+        updatedEntry.setUsername(user.getUsername());
+        updatedEntry.setEncryptedPassword(user.getEncryptedPassword());
+
+
+        return userRepository.save(updatedEntry);
+
+    }
+
+
+
+    @Override
     @Transactional
     public void delete(Integer id) {
         User user = userRepository.findOne(id);
-//        customerRepository.delete(user.getCustomer());
         userRepository.delete(user);
     }
 

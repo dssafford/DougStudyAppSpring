@@ -46,7 +46,7 @@ public class MockMvcWebTestsDougController {
 	public void dougPage() throws Exception {
 		mockMvc.perform(get("/login"))
 				  .andExpect(status().is2xxSuccessful())
-				  .andExpect(view().name("login"));
+				  .andExpect(view().name("/user/login"));
 
 
 //				  .andExpect(model().attributeExists("books"))

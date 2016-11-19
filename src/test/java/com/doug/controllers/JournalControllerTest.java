@@ -51,7 +51,7 @@ public class JournalControllerTest {
 
 		mockMvc.perform(get("/journal/list"))
 				  .andExpect(status().isOk())
-				  .andExpect(view().name("journals"))
+				  .andExpect(view().name("/journal/journals"))
 				  .andExpect(model().attribute("journals", hasSize(2)));
 	}
 
@@ -64,7 +64,7 @@ public class JournalControllerTest {
 
 		mockMvc.perform(get("/journal/1"))
 				  .andExpect(status().isOk())
-				  .andExpect(view().name("journalshow"))
+				  .andExpect(view().name("journal/journalshow"))
 				  .andExpect(model().attribute("journal", instanceOf(JournalSql.class)));
 	}
 
@@ -90,7 +90,7 @@ public class JournalControllerTest {
 
 		mockMvc.perform(get("/journal/new"))
 				  .andExpect(status().isOk())
-				  .andExpect(view().name("journalformnew"))
+				  .andExpect(view().name("journal/journalformnew"))
 				  .andExpect(model().attribute("journal", instanceOf(JournalSql.class)));
 	}
 
