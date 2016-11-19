@@ -61,27 +61,25 @@
                     <!--<div class="navbar-text">Signed in as:</div>-->
                     <!--<div class="navbar-text" sec:authentication="name"></div>-->
                     <!--<p class="navbar-text">Signed in as<div class="navbar-text" sec:authentication="name"></div></p>-->
-                    <div th:if="${#authorization.expression('isAnonymous()')== false}">
+                    <!--<div th:if="${#authorization.expression('isAnonymous()')== false}">-->
                         <div class="navbar-form navbar-right">
                             <div class="navbar-text" >Signed in as:</div>
                             <div class="navbar-text" sec:authentication="name"></div>
 
                         </div>
-                    </div>
+                    <!--</div>-->
 
-                    <div th:if="${#authorization.expression('isAnonymous()')}">
-                        <form class="navbar-form navbar-right" role="search" th:action="@{/registration}">
-
-
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="username"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="password"/>
-                            </div>
-                            <button type="submit" class="btn btn-default">Submit</button>
-                        </form>
-                    </div>
+                    <!--<div th:if="${#authorization.expression('isAnonymous()')}">-->
+                        <!--<form class="navbar-form navbar-right" th:object="${loginForm}" th:action="@{/login}" method="post">-->
+                            <!--<div class="form-group">-->
+                                <!--<input type="text" class="form-control" placeholder="username"/>-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<input type="password" class="form-control" placeholder="password"/>-->
+                            <!--</div>-->
+                            <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                        <!--</form>-->
+                    <!--</div>-->
                 </div><!-- /.navbar-collapse -->
             </div>
         </nav>

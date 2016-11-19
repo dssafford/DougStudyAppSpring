@@ -2,6 +2,7 @@ package com.doug;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebElement;
@@ -29,25 +30,25 @@ public class SeleniumLearningWebTests {
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @Test
-    public void testContext() {
-        assertEquals("one", "one");
-    }
 
     @Test
-    public void loginSubmitTest() {
-        String baseUrl = "http://localhost:" + port + "/";
+    public void loginSubmitGoodTest() {
+//        Ensure that we don't get an exception for good login
+        String baseUrl = "http://localhost:" + port + "/login";
         browser.get(baseUrl);
 
-//        browser.findElementByName("username").sendKeys("user");
-//        browser.findElementByName("password").sendKeys("password");
-        browser.findElementsByLinkText("Checkout").get(0).click();
+        browser.findElementByName("username").sendKeys("doug");
+        browser.findElementByName("password").sendKeys("password");
 
 
-        assertEquals("http://localhost:" + port + "/checkout", browser.getCurrentUrl());
+        //browser.findElementsByLinkText("Checkout").get(0).click();
+
+
+        assertEquals("http://localhost:" + port + "/login", browser.getCurrentUrl());
 
         browser.findElementByTagName("form").submit();
 
+        //assertEquals(browser.getCurrentUrl(), browser.getCurrentUrl());
 
     }
     @Test
@@ -58,27 +59,33 @@ public class SeleniumLearningWebTests {
         String currentUrl = browser.getCurrentUrl();
         assertEquals(baseUrl, currentUrl);
 
-        WebElement ds = browser.findElementsByClassName("shit").get(0);
+        WebElement ds = browser.findElementsByClassName("formHeader").get(0);
 
-        assertEquals("Wowser Mammie", ds.getText());
+        assertEquals("Please Login:", ds.getText());
 
 
-        browser.findElementByName("username").sendKeys("BOOK TITLE");
-        browser.findElementByName("password").sendKeys("BOOK AUTHOR");
+        browser.findElementByName("username").sendKeys("doug");
+        browser.findElementByName("password").sendKeys("password");
 
         browser.findElementByTagName("form").submit();
 
-        WebElement dl =
-                browser.findElementByCssSelector("dt.bookHeadline");
-        assertEquals("Bookie by Baby (ISBN: booboo)",
-                dl.getText());
-        WebElement dt =
-                browser.findElementByCssSelector("dd.bookDescription");
-        assertEquals("mybook by eatshit", dt.getText());
+
     }
 
+    @Ignore
+    @Test
+    public void findByCSSSelector() {
+
+        String baseUrl = "http://localhost:" + port + "/login";
+        browser.get(baseUrl);
 
 
+        WebElement dl =
+                browser.findElementByCssSelector("div.dougOne");
+        assertEquals("Hey You",
+                dl.getText());
+
+    }
 
     @AfterClass
     public static void closeBrowser() {

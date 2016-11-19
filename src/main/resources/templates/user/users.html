@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
 
-
     <title>Users</title>
 
     <th:block th:include="fragments/headerinc :: head"></th:block>
@@ -11,7 +10,6 @@
 <div class="container">
     <th:block th:include="fragments/header :: header"></th:block>
     <div th:if="${not #lists.isEmpty(users)}">
-        wow
         <h2 class="formHeader">User List</h2>
 
         <div class="panel panel-default">

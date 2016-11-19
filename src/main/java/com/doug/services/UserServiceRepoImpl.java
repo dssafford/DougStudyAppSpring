@@ -17,7 +17,6 @@ import java.util.List;
 public class UserServiceRepoImpl implements UserService {
 
     private UserRepository userRepository;
-//    private CustomerRepository customerRepository;
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -35,11 +34,6 @@ public class UserServiceRepoImpl implements UserService {
     public Iterable<User> listAllUsers() {
         return userRepository.findAll();
     }
-
-//    @Autowired
-//    public void setCustomerRepository(CustomerRepository customerRepository) {
-//        this.customerRepository = customerRepository;
-//    }
 
     @Override
     public List<?> listAll() {
@@ -85,7 +79,6 @@ public class UserServiceRepoImpl implements UserService {
     @Transactional
     public void delete(Integer id) {
         User user = userRepository.findOne(id);
-//        customerRepository.delete(user.getCustomer());
         userRepository.delete(user);
     }
 
