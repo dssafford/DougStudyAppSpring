@@ -17,6 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+// TODO WTF here Doug
+
+
+
+
 @Controller
 public class IndexController {
 
@@ -59,6 +65,7 @@ public class IndexController {
 //
 //        return "/user/doug";
 //    }
+
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") UserCommand userCommand,
