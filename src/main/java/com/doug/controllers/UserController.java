@@ -125,7 +125,7 @@ public class UserController {
 
     @RequestMapping(value = "/doUser", method = RequestMethod.POST)
     public String doUser(@Valid UserCommand UserCommand, BindingResult bindingResult,
-                            User user){
+                         User user){
 
         if (bindingResult.hasErrors()) {
             return "userformnew";
