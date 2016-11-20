@@ -1,5 +1,8 @@
 package com.doug.controllers;
 
+import com.doug.commands.JournalCommand;
+import com.doug.domain.JournalSql;
+import com.doug.services.JournalService;
 import com.doug.commands.UserCommand;
 import com.doug.domain.User;
 import com.doug.services.UserService;
@@ -16,62 +19,61 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 
-    private UserService userService;
+<<<<<<< HEAD
+    private JournalService journalService;
 
     @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+    public void setJournalService(JournalService journalService) {
+        this.journalService = journalService;
     }
 
-    @RequestMapping(value = "/user/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/journal/list", method = RequestMethod.GET)
     public String list(Model model){
-        model.addAttribute("users", userService.listAllUsers());
-        return "user/users";
+        model.addAttribute("journals", journalService.listAllJournals());
+        return "/journal/journals";
     }
 
-    @RequestMapping("user/{id}")
-    public String showUser(@PathVariable Integer id, Model model){
-        model.addAttribute("User", userService.getById(id));
-        return "usershow";
+    @RequestMapping("journal/{id}")
+    public String showJournal(@PathVariable Integer id, Model model){
+        model.addAttribute("journal", journalService.getJournalById(id));
+        return "journalshow";
     }
 
-    @RequestMapping("user/edit/{id}")
+    @RequestMapping("journal/edit/{id}")
     public String edit(@PathVariable Integer id, Model model){
-        model.addAttribute("User", userService.getById(id));
-        model.addAttribute("UserCommand", new UserCommand());
+        model.addAttribute("journal", journalService.getJournalById(id));
+        model.addAttribute("journalCommand", new JournalCommand());
 
-        return "useredit";
+        return "journaledit";
     }
 
-    @RequestMapping("user/delete/{id}")
+    @RequestMapping("journal/delete/{id}")
     public String delete(@PathVariable Integer id){
-        userService.delete(id);
+        journalService.deleteJournal(id);
 
-        return "redirect:/user/list";
+        return "redirect:/journal/list";
     }
 
-    @RequestMapping(value = "user/new", method = RequestMethod.GET)
-    public String newUser(Model model){
+    @RequestMapping(value = "/journal/new", method = RequestMethod.GET)
+    public String newJournal(Model model){
 
-        model.addAttribute("user", new User());
-        model.addAttribute("userCommand", new UserCommand());
+        model.addAttribute("journal", new JournalSql());
+        model.addAttribute("journalCommand", new JournalCommand());
 
 
-        return "user/userformnew";
+        return "journal/journalformnew";
     }
 
-    @RequestMapping(value = "/doUser", method = RequestMethod.POST)
-    public String doUser(@Valid UserCommand UserCommand, BindingResult bindingResult,
-                            User user){
+    @RequestMapping(value = "/dojournal", method = RequestMethod.POST)
+    public String doJournal(@Valid JournalCommand journalCommand, BindingResult bindingResult,
+                            JournalSql journal){
 
         if (bindingResult.hasErrors()) {
-            return "userformnew";
+            return "journalformnew";
         }
 
-        User UserSql = userService.saveOrUpdateUser(user);
+        JournalSql journalSql = journalService.saveOrUpdateJournal(journal);
 
-        return "redirect:/user/" + user.getId();
-
-    }
+        return "redirect:/journal/" + journalSql.getId();
 
 }
