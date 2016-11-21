@@ -3,15 +3,25 @@ package com.doug.services;
 import com.doug.domain.JournalSql;
 import com.doug.repositories.JournalSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
+@Transactional
 public class JournalServiceImpl implements JournalService {
     private JournalSqlRepository journalSqlRepository;
 
     @Autowired
     public void setJournalRepository(JournalSqlRepository journalSqlRepository) {
         this.journalSqlRepository = journalSqlRepository;
+    }
+
+    @Override
+    public Page<JournalSql> listAllByPage(Pageable pageable) {
+       return journalSqlRepository.findAll(pageable);
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.doug.commands.JournalCommand;
 import com.doug.domain.JournalSql;
 import com.doug.services.JournalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,8 +24,29 @@ public class JournalController {
         this.journalService = journalService;
     }
 
+
+//    @ModelAttribute("users")
+//    public Page<JournalSql> users(@PageableDefault(size = 5) Pageable pageable) {
+//        return journalService.findAll(pageable);
+//    }
+
+
+
+
+
+
+    @RequestMapping(value="/journal/paging",method=RequestMethod.GET)
+    public String journalPaging(Pageable pageable, Model model) {
+
+//        pageable.first();
+
+        model.addAttribute("journals", journalService.listAllByPage(pageable));
+
+        return "/journal/journalsPaging";
+    }
+
     @RequestMapping(value = "/journal/list", method = RequestMethod.GET)
-    public String list(Model model){
+    public String list(Model model) {
         model.addAttribute("journals", journalService.listAllJournals());
         return "/journal/journals";
     }

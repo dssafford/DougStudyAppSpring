@@ -2,6 +2,9 @@ package com.doug.services;
 
 
 import com.doug.domain.JournalSql;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 
 public interface JournalService {
 
@@ -12,4 +15,6 @@ public interface JournalService {
     JournalSql saveOrUpdateJournal(JournalSql journal);
 
     void deleteJournal(Integer id);
+
+    Page<JournalSql> listAllByPage(@PageableDefault(size = 5) Pageable pageable);
 }
