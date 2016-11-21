@@ -31,6 +31,10 @@ body {
 	background: transparent !important;
 }
 
+.panel-default {
+	background-color: lavenderblush!important;
+}
+
 .dougOne {
 	color: #31b0d5;
 }
