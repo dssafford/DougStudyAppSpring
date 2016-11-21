@@ -22,9 +22,8 @@
     <th:block th:include="fragments/header :: header"></th:block>
 
 
-
     <!--<ol>-->
-        <!--<li th:each="journal, it : ${journals}" th:with="index = ${it.count}" th:text="${journal.id + ' - ' + journal.project}" th:value="${1 * journals.size + index}">Id</li>-->
+    <!--<li th:each="journal, it : ${journals}" th:with="index = ${it.count}" th:text="${journal.id + ' - ' + journal.project}" th:value="${1 * journals.size + index}">Id</li>-->
     <!--</ol>-->
 
 
@@ -32,21 +31,26 @@
         <h2 class="formHeader">Journal List</h2>
 
 
-        <div class="panel panel-default">        <nav th:align="center">
-            <ul class="pagination" th:with="total = ${journals.totalPages}">
-                <li th:if="${journals.hasPrevious()}">
-                    <a th:href="@{/journal/paging(page=${journals.previousPageable().pageNumber},size=${journals.size})}" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li th:each="page : ${#numbers.sequence(0, total - 1)}"><a th:href="@{/journal/paging(page=${page},size=${journals.size})}" th:text="${page + 1}">1</a></li>
-                <li th:if="${journals.hasNext()}">
-                    <a th:href="@{/journal/paging(page=${journals.nextPageable().pageNumber},size=${journals.size})}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <div class="panel panel-default">
+            <nav th:align="center">
+                <ul class="pagination" th:with="total = ${journals.totalPages}">
+                    <li th:if="${journals.hasPrevious()}">
+                        <a th:href="@{/journal/paging(page=${journals.previousPageable().pageNumber},size=${journals.size})}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li th:each="page : ${#numbers.sequence(0, total - 1)}"><a
+                            th:href="@{/journal/paging(page=${page},size=${journals.size})}" th:text="${page + 1}">1</a>
+                    </li>
+                    <li th:if="${journals.hasNext()}">
+                        <a th:href="@{/journal/paging(page=${journals.nextPageable().pageNumber},size=${journals.size})}"
+                           aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
             <div class="panel-body">
                 <table class="table table-bordered" bgcolor="#f0f8ff">
                     <tr>

@@ -4,7 +4,9 @@ import com.doug.domain.JournalSql;
 import com.doug.repositories.JournalSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,9 +21,20 @@ public class JournalServiceImpl implements JournalService {
         this.journalSqlRepository = journalSqlRepository;
     }
 
+
+    private Pageable createPageRequest(Integer pageNumber, Integer pageSize) {
+        return new PageRequest(pageNumber, pageSize , Sort.Direction.ASC, "project");
+    }
+
+
     @Override
     public Page<JournalSql> listAllByPage(Pageable pageable) {
-       return journalSqlRepository.findAll(pageable);
+        //Sort sort = new Sort(Sort.Direction.DESC, "Id");
+
+        Integer pageNumber = pageable.getPageNumber();
+        Integer pageSize = pageable.getPageSize();
+
+       return journalSqlRepository.findAll(createPageRequest(pageNumber, pageSize));
     }
 
     @Override
