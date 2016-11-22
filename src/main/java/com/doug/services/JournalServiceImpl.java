@@ -70,6 +70,7 @@ public class JournalServiceImpl implements JournalService {
 
     @Override
     public void deleteJournal(Integer id) {
+        JournalSql journalSql = journalSqlRepository.findOne(id);
         journalSqlRepository.delete(id);
     }
 

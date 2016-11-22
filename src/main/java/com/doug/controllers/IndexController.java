@@ -35,7 +35,7 @@ public class IndexController {
 
     @RequestMapping("/access_denied")
     public String notAuth(){
-        return "access_denied";
+        return "/user/access_denied";
     }
 
     @RequestMapping("/login")

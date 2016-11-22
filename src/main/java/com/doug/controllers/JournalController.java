@@ -67,9 +67,10 @@ public class JournalController {
 
     @RequestMapping("journal/delete/{id}")
     public String delete(@PathVariable Integer id){
+
         journalService.deleteJournal(id);
 
-        return "redirect:/journal/list";
+        return "redirect:/journal/paging";
     }
 
     @RequestMapping(value = "/journal/new", method = RequestMethod.GET)
