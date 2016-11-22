@@ -6,3 +6,5 @@ applications:
   instances: 1
   disk_quota: 512M
   domain: cfapps.io
+  services:
+    - mysql

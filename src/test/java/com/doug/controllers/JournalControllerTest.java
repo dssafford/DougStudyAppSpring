@@ -77,7 +77,7 @@ public class JournalControllerTest {
 
 		mockMvc.perform(get("/journal/edit/1"))
 				  .andExpect(status().isOk())
-				  .andExpect(view().name("journaledit"))
+				  .andExpect(view().name("/journal/journaledit"))
 				  .andExpect(model().attribute("journal", instanceOf(JournalSql.class)));
 	}
 
@@ -128,7 +128,7 @@ public class JournalControllerTest {
 
 		//verify properties of bound object
 		ArgumentCaptor<JournalSql> boundJournal = ArgumentCaptor.forClass(JournalSql.class);
-		verify(journalService).saveOrUpdateJournal(boundJournal.capture());
+   		verify(journalService).saveOrUpdateJournal(boundJournal.capture());
 
 		assertEquals(id, boundJournal.getValue().getId());
 		assertEquals(machine, boundJournal.getValue().getMachine());

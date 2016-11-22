@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes=DougStudyAppSpringApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SeleniumLearningWebTests {
@@ -30,7 +31,7 @@ public class SeleniumLearningWebTests {
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-
+    @Ignore
     @Test
     public void loginSubmitGoodTest() {
 //        Ensure that we don't get an exception for good login
@@ -51,6 +52,7 @@ public class SeleniumLearningWebTests {
         //assertEquals(browser.getCurrentUrl(), browser.getCurrentUrl());
 
     }
+    @Ignore
     @Test
     public void differentWaysToUseDriverAndFindElements() {
         String baseUrl = "http://localhost:" + port + "/login";
