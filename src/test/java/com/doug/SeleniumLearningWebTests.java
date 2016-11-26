@@ -46,7 +46,8 @@ public class SeleniumLearningWebTests {
 
         browser.findElementByTagName("form").submit();
 
-        //assertEquals(browser.getCurrentUrl(), browser.getCurrentUrl());
+        assertEquals("http://localhost:" + port + "/", browser.getCurrentUrl());
+
 
     }
 
@@ -70,7 +71,6 @@ public class SeleniumLearningWebTests {
 
 
     }
-
 
     @Test
     public void findByCSSSelector() {
