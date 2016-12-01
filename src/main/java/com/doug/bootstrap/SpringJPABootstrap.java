@@ -6,6 +6,7 @@ import com.doug.services.RoleService;
 import com.doug.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
@@ -15,15 +16,11 @@ import java.util.List;
  * Created by jt on 12/9/15.
  */
 @Component
+@Profile("bootstrap")
 public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private UserService userService;
     private RoleService roleService;
-
-//    @Autowired
-//    public void setProductService(ProductService productService) {
-//        this.productService = productService;
-//    }
 
     @Autowired
     public void setUserService(UserService userService) {
@@ -38,13 +35,13 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 //        loadProducts();
-//       loadUsersAndCustomers();
+       loadUsersAndCustomers();
 ////////        loadCarts();
 ////////        loadOrderHistory();
-//        loadRoles();
-////
-//        assignUsersToDefaultRole();
-//        assignUsersToAdminRole();
+        loadRoles();
+
+        assignUsersToDefaultRole();
+        assignUsersToAdminRole();
 
     }
 
