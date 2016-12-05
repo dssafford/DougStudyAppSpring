@@ -32,12 +32,10 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#" th:href="@{/login}">Login</a></li>
                                 <li><a href="#" th:href="@{/journal/paging}">List</a></li>
-                                <li><a href="#" th:href="@{/journal/new}">Entry</a></li>
-                                <li><a href="#" th:href="@{/checkout}">Checkout</a></li>
+                                <li><a href="#" th:href="@{/journal/new}">New Entry</a></li>
                                 <li><a href="#" th:href="@{/user/list}">Users</a></li>
-                                <li><a href="#" th:href="@{/registration}">Registration</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
+                                <li><a href="#" th:href="@{/registration}">Registration</a></li>
                                 <li><a href="#" th:href="@{/logout}">Logout</a></li>
                             </ul>
                         </li>
@@ -85,11 +83,8 @@
         </nav>
         <p> space </p>
 
-        <div class="jumbotron">
-            <div>
-                <h2>Doug Study App</h2>
-            </div>
-        </div>
+        <div class="panel-dude">
+        </div><h1 th:align="center">Doug Study App</h1>
     </div>
 </div>
 </body>

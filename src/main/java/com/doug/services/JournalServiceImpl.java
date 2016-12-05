@@ -22,20 +22,23 @@ public class JournalServiceImpl implements JournalService {
     }
 
 
-    private Pageable createPageRequest(Integer pageNumber, Integer pageSize) {
-        return new PageRequest(pageNumber, pageSize , Sort.Direction.ASC, "project");
+    private Pageable createPageRequest(Integer pageNumber, Integer pageSize, Sort sort) {
+        return new PageRequest(pageNumber, pageSize , sort);
     }
 
 
     @Override
-    public Page<JournalSql> listAllByPage(Pageable pageable) {
+    public Page<JournalSql> listAllByPage(Pageable pageable, Sort sort) {
+
         //Sort sort = new Sort(Sort.Direction.DESC, "Id");
 
         Integer pageNumber = pageable.getPageNumber();
         Integer pageSize = pageable.getPageSize();
 
-       return journalSqlRepository.findAll(createPageRequest(pageNumber, pageSize));
+
+       return journalSqlRepository.findAll(createPageRequest(pageNumber, pageSize, sort));
     }
+
 
     @Override
     public Iterable<JournalSql> listAllJournals() {

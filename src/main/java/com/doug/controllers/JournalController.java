@@ -5,6 +5,7 @@ import com.doug.domain.JournalSql;
 import com.doug.services.JournalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,23 +25,12 @@ public class JournalController {
         this.journalService = journalService;
     }
 
-
-//    @ModelAttribute("users")
-//    public Page<JournalSql> users(@PageableDefault(size = 5) Pageable pageable) {
-//        return journalService.findAll(pageable);
-//    }
-
-
-
-
-
-
     @RequestMapping(value="/journal/paging",method=RequestMethod.GET)
-    public String journalPaging(Pageable pageable, Model model) {
+    public String journalPaging(Pageable pageable, Model model, Sort sort) {
 
 //        pageable.first();
 
-        model.addAttribute("journals", journalService.listAllByPage(pageable));
+        model.addAttribute("journals", journalService.listAllByPage(pageable, sort));
 
         return "/journal/journalsPaging";
     }
@@ -93,9 +83,9 @@ public class JournalController {
 
         JournalSql journalSql = journalService.saveOrUpdateJournal(journal);
 
-        return "redirect:/journal/" + journalSql.getId();
+//        return "redirect:/journal/" + journalSql.getId();
+        return "redirect:/journal/paging";
 
     }
-
 
 }

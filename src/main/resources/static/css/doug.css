@@ -25,16 +25,40 @@ body {
 }
 .jumbotron {
 	text-align: center;
-	height: 130px;
+	vertical-align: bottom !important;
+	height: 10px !important;
 	color: whitesmoke !important;
 
 	background: transparent !important;
 }
 
 .panel-default {
-	background-color: lavenderblush!important;
+	background-color: whitesmoke!important;
 }
 
+.panel-dude {
+	text-align: center !important;
+	vertical-align: bottom !important;
+	height: 20px !important;
+	color: whitesmoke !important;
+
+	background: transparent !important;
+}
+
+.help-block {
+	color: cyan !important;
+}
+
+.form-group .has-error .control-label {
+	color: cyan;
+}
+
+h1 {
+	color: whitesmoke !important;
+}
+h2 {
+	color: orange !important;
+}
 .dougOne {
 	color: #31b0d5;
 }
@@ -118,12 +142,13 @@ img {
 
 label {
 	font-weight: bold;
-	color: whitesmoke;
+	color: orange;
 }
 
 .form-control-static {
 
-	color:orange;
+	/*color:orange;*/
+	color: whitesmoke;
 
 }
 
