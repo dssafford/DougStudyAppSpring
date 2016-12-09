@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head lang="en">
 
 
@@ -29,7 +29,23 @@
 
     <div th:if="${not #lists.isEmpty(journals)}">
         <h2 class="formHeader">Journal List</h2>
+        <form class="form-horizontal" th:action="@{/doSort}" method="post">
+            <div class="form-group">
+                <label class="col-sm-5 control-label" th:align="left">Sort By:</label>
 
+                <select>
+                    <option>id</option>
+                    <option>machine</option>
+                    <option>project</option>
+                    <option>directory</option>
+                </select><button th:type="submit">Sort</button>
+                <div class="shit">
+                    <input type="radio" name="gender" value="male" checked="true"> Ascending</input>
+                    <input type="radio" name="gender" value="female"> Descending</input>
+                </div>
+            </div>
+
+        </form>
 
         <div class="panel panel-default">
             <nav th:align="center">

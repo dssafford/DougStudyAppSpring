@@ -17,6 +17,6 @@ public interface JournalService {
 
     void deleteJournal(Integer id);
 
-    Page<JournalSql> listAllByPage(@PageableDefault(size = 10) Pageable pageable, Sort sort);
+    Page<JournalSql> listAllByPage(@PageableDefault(size = 10) Pageable pageable, Sort sort, String sortProperty);
 
 }

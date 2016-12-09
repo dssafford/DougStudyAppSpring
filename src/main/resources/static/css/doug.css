@@ -15,6 +15,9 @@ body {
 	/*margin-right: 30px;*/
 /*}*/
 
+.shit {
+	color: whitesmoke;
+}
 @media (min-width: 768px) {
 	.navbar-text {
 		/*margin-left:-3px;*/
@@ -51,6 +54,12 @@ body {
 
 .form-group .has-error .control-label {
 	color: cyan;
+}
+
+.form-group .control-label {
+	vertical-align: bottom;
+	-webkit-text-size-adjust: 100px;
+	color: whitesmoke;
 }
 
 h1 {

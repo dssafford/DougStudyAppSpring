@@ -30,10 +30,27 @@ public class JournalController {
 
 //        pageable.first();
 
-        model.addAttribute("journals", journalService.listAllByPage(pageable, sort));
+        model.addAttribute("journals", journalService.listAllByPage(pageable, sort, "id"));
 
         return "/journal/journalsPaging";
     }
+
+//    @RequestMapping(value = "/doSort", method = RequestMethod.PUT)
+//    public String sortStuff(Pageable pageable, Model model, Sort sort) {
+//
+//
+//        model.addAttribute("journals", journalService.listAllByPage(pageable, sort));
+//
+//
+//
+//        return "/journal/journalsPaging";
+//
+//    }
+
+
+
+
+
 
     @RequestMapping(value = "/journal/list", method = RequestMethod.GET)
     public String list(Model model) {
