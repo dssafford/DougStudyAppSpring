@@ -5,8 +5,8 @@ package com.doug.domain;
  */
 public class SortProperties {
 
-	private String sortColumn;
-	private String sortDirection;
+	public String sortColumn;
+	public String sortDirection;
 
 	public String getsortColumn() {
 		return sortColumn;

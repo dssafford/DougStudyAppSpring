@@ -34,6 +34,8 @@ public class JournalController {
         model.addAttribute("journals", journalService.listAllByPage(pageable, sortProperties.getsortColumn(),
                 sortProperties.getSortDirection()));
 
+        model.addAttribute(sortProperties);
+
         return "/journal/journalsPaging";
     }
 

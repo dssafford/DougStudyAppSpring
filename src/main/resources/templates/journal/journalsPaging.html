@@ -34,10 +34,11 @@
                 <label class="col-sm-5 control-label" th:align="left">Sort By:</label>
 
                 <select th:name="sortColumn">
-                    <option th:value="id"> id</option>
-                    <option th:value="machine">machine</option>
-                    <option th:value="project"> project</option>
-                    <option th:value="directory">directory</option>
+                    <option th:value="id" th:selected="(${sortProperties.sortColumn}=='id')"> id</option>
+                    <option th:value="machine" th:selected="(${sortProperties.sortColumn}=='machine')">machine</option>
+                    <option th:value="project" th:selected="(${sortProperties.sortColumn}=='project')"> project</option>
+                    <option th:value="directory" th:selected="(${sortProperties.sortColumn}=='directory')">directory</option>
+
                 </select>
                 <button th:type="submit">Sort</button>
                 <div class="shit">
