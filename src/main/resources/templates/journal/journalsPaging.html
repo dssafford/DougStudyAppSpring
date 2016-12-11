@@ -29,19 +29,20 @@
 
     <div th:if="${not #lists.isEmpty(journals)}">
         <h2 class="formHeader">Journal List</h2>
-        <form class="form-horizontal" th:action="@{/doSort}" method="post">
+        <form class="form-horizontal" th:object="${sortProperty}" th:action="@{/doSort}" method="post">
             <div class="form-group">
                 <label class="col-sm-5 control-label" th:align="left">Sort By:</label>
 
-                <select>
-                    <option>id</option>
-                    <option>machine</option>
-                    <option>project</option>
-                    <option>directory</option>
-                </select><button th:type="submit">Sort</button>
+                <select th:name="sortColumn">
+                    <option th:value="id"> id</option>
+                    <option th:value="machine">machine</option>
+                    <option th:value="project"> project</option>
+                    <option th:value="directory">directory</option>
+                </select>
+                <button th:type="submit">Sort</button>
                 <div class="shit">
-                    <input type="radio" name="gender" value="male" checked="true"> Ascending</input>
-                    <input type="radio" name="gender" value="female"> Descending</input>
+                    <input type="radio" name="sortDirection" value="ASC" checked="true"> Ascending</input>
+                    <input type="radio" name="sortDirection" value="DESC"> Descending</input>
                 </div>
             </div>
 
@@ -56,9 +57,12 @@
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
+
                     <li th:each="page : ${#numbers.sequence(0, total - 1)}"><a
-                            th:href="@{/journal/paging(page=${page},size=${journals.size})}" th:text="${page + 1}">1</a>
+                            th:href="@{/journal/paging(page=${page},size=${journals.size})}"
+                            th:text="${page + 1}">1</a>
                     </li>
+
                     <li th:if="${journals.hasNext()}">
                         <a th:href="@{/journal/paging(page=${journals.nextPageable().pageNumber},size=${journals.size})}"
                            aria-label="Next">

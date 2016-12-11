@@ -70,6 +70,10 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
                         user.addRole(role);
                         userService.saveOrUpdate(user);
                     }
+                    if (user.getUsername().equals("doug")) {
+                        user.addRole(role);
+                        userService.saveOrUpdate(user);
+                    }
                 });
             }
         });

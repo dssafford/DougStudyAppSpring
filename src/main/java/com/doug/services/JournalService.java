@@ -4,7 +4,6 @@ package com.doug.services;
 import com.doug.domain.JournalSql;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 
 public interface JournalService {
@@ -17,6 +16,6 @@ public interface JournalService {
 
     void deleteJournal(Integer id);
 
-    Page<JournalSql> listAllByPage(@PageableDefault(size = 10) Pageable pageable, Sort sort, String sortProperty);
+    Page<JournalSql> listAllByPage(@PageableDefault(size = 10) Pageable pageable, String sortColumn, String sortDirection);
 
 }

@@ -26,19 +26,32 @@ public class JournalServiceImpl implements JournalService {
         return new PageRequest(pageNumber, pageSize , sort);
     }
 
-
     @Override
-    public Page<JournalSql> listAllByPage(Pageable pageable, Sort sort, String sortProperty) {
+    public Page<JournalSql> listAllByPage(Pageable pageable, String sortColumn, String sortDirection) {
 
-        //Sort sort = new Sort(Sort.Direction.DESC, "Id");
+
+
+        Sort sort;
+
+        if(sortColumn==null) {
+            sortColumn="id";
+        }
+
+        if(sortDirection==null) {
+            sort = new Sort(Sort.Direction.ASC, sortColumn);
+        } else if(sortDirection.equals("DESC")) {
+            sort = new Sort(Sort.Direction.DESC, sortColumn);
+        } else {
+            sort = new Sort(Sort.Direction.ASC, sortColumn);
+        }
 
         Integer pageNumber = pageable.getPageNumber();
         Integer pageSize = pageable.getPageSize();
 
-        Sort newSort = new Sort(Sort.Direction.ASC, sortProperty);
+//        Sort newSort = new Sort(sort, sortProperty);
 
 
-       return journalSqlRepository.findAll(createPageRequest(pageNumber, pageSize, newSort));
+       return journalSqlRepository.findAll(createPageRequest(pageNumber, pageSize, sort));
     }
 
 
