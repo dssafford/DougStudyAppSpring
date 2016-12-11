@@ -118,7 +118,7 @@ public class JournalControllerTest {
 				  .param("project", project)
 				  .param("comments", comments))
 				  .andExpect(status().is3xxRedirection())
-				  .andExpect(view().name("redirect:/journal/1"))
+				  .andExpect(view().name("redirect:/journal/paging"))
 				  .andExpect(model().attribute("journalSql", instanceOf(JournalSql.class)))
 				  .andExpect(model().attribute("journalSql", hasProperty("id", is(id))))
 				  .andExpect(model().attribute("journalSql", hasProperty("machine", is(machine))))
