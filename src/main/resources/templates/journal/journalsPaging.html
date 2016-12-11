@@ -42,8 +42,8 @@
                 </select>
                 <button th:type="submit">Sort</button>
                 <div class="shit">
-                    <input type="radio" name="sortDirection" value="ASC" checked="true"> Ascending</input>
-                    <input type="radio" name="sortDirection" value="DESC"> Descending</input>
+                    <input type="radio" name="sortDirection" value="ASC" th:checked="(${sortProperties.sortDirection}=='ASC')"> Ascending</input>
+                    <input type="radio" name="sortDirection" value="DESC" th:checked="(${sortProperties.sortDirection}=='DESC')"> Descending</input>
                 </div>
             </div>
 
