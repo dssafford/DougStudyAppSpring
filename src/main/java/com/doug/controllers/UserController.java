@@ -31,16 +31,16 @@ public class UserController {
 
     @RequestMapping("user/{id}")
     public String showUser(@PathVariable Integer id, Model model){
-        model.addAttribute("User", userService.getById(id));
-        return "usershow";
+        model.addAttribute("user", userService.getById(id));
+        return "user/usershow";
     }
 
     @RequestMapping("user/edit/{id}")
     public String edit(@PathVariable Integer id, Model model){
-        model.addAttribute("User", userService.getById(id));
-        model.addAttribute("UserCommand", new UserCommand());
+        model.addAttribute("user", userService.getById(id));
+        model.addAttribute("userCommand", new UserCommand());
 
-        return "useredit";
+        return "user/useredit";
     }
 
     @RequestMapping("user/delete/{id}")

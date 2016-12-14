@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Edit Entry</title>
+    <th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+
+<body>
+<th:block th:include="fragments/header :: header"></th:block>
+<div class="container">
+    <h2 class="formHeader">New Journal Details</h2>
+    <form class="form-horizontal" th:object="${userCommand}" th:action="@{/doUser}" method="post">
+        <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+            <p th:text="#{userCommand.hasErrors}">Error Message</p>
+        </div>
+        <!--<input type="hidden" th:field="*{id}"/>-->
+        <!--<input type="hidden" th:field="*{version}"/>-->
+        <div class="form-group">
+            <div class="form-group" th:class="${#fields.hasErrors('username')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">User Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="${user.username}"/>
+                    <span class="help-block" th:if="${#fields.hasErrors('username')}">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('username')}" th:text="${err}"/>
+                       </ul>
+                </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group" th:class="${#fields.hasErrors('password')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Encrypted Password:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="${user.encryptedPassword}"/>
+                    <span class="help-block" th:if="${#fields.hasErrors('encryptedPassword')}">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('encryptedpassword')}" th:text="${err}"/>
+                       </ul>
+                </span>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row col-sm-6 col-sm-offset-2">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
