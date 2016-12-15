@@ -58,12 +58,10 @@
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-
                     <li th:each="page : ${#numbers.sequence(0, total - 1)}"><a
                             th:href="@{/journal/paging(page=${page},size=${journals.size})}"
                             th:text="${page + 1}">1</a>
                     </li>
-
                     <li th:if="${journals.hasNext()}">
                         <a th:href="@{/journal/paging(page=${journals.nextPageable().pageNumber},size=${journals.size})}"
                            aria-label="Next">
@@ -99,6 +97,7 @@
         </div>
     </div>
 </div>
+
 <div class="container" th:replace="fragments/footer :: footer">
     <p>footer</p>
 </div>

@@ -11,8 +11,6 @@
 
 <th:block th:include="fragments/header :: header"></th:block>
 <div class="container">
-
-
     <h2 th:class="formHeader">New User Details</h2>
     <form class="form-horizontal" th:object="${userCommand}" th:action="@{/doUser}" method="post">
         <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
@@ -44,24 +42,19 @@
                 </div>
 
             </div>
+        </div>
 
+        <div class="form-group">
+            <label class="col-sm-2 control-label" th:align="left">Roles:</label>
+            <select th:name="role">
+                <div th:each="role : ${roles}">
+                    <option th:value="${role.role}" th:text="${role.role}"> hey</option>
+                </div>
+            </select>
 
         </div>
-        <div class="form-group">
-            <div class="form-group" th:class="${#fields.hasErrors('username')} ? 'form-group has-error' : 'form-group'">
-                <label class="col-sm-2 control-label">Role:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{role}"/>
-                    <span class="help-block" th:if="${#fields.hasErrors('role')}">
-                       <ul>
-                           <li th:each="err : ${#fields.errors('role')}" th:text="${err}"/>
-                       </ul>
-                </span>
-                </div>
-            </div>
-            <div class="row col-sm-6 col-sm-offset-2">
-                <button type="submit" class="btn btn-default">Submit</button>
-            </div>
+        <div class="row col-sm-6 col-sm-offset-2">
+            <button type="submit" class="btn btn-default">Submit</button>
         </div>
 
     </form>

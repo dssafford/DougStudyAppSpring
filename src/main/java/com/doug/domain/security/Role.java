@@ -16,7 +16,19 @@ import java.util.List;
 @Entity
 public class Role extends AbstractDomainClass {
 
-    private String role;
+    public String role;
+
+    public Integer id;
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable
