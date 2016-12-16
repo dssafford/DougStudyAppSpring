@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
-      xmlns:margin-left="http://www.w3.org/1999/xhtml" xmlns:margin-right="http://www.w3.org/1999/xhtml">
+>
 <head lang="en">
     <th:block th:include="fragments/headerinc :: head"></th:block>
 </head>
@@ -24,15 +24,25 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#" th:href="@{/journal/paging}">List Entries</a></li>
-                        <li><a href="#" th:href="@{/journal/new}">Entry</a></li>
+
+
+                        <li><a href="#" th:href="@{/journal/new}">Add</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">Journal Stuff <span class="caret"></span></a>
+                               aria-haspopup="true" aria-expanded="false">Entries <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#" th:href="@{/login}">Login</a></li>
                                 <li><a href="#" th:href="@{/journal/paging}">List</a></li>
                                 <li><a href="#" th:href="@{/journal/new}">New Entry</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <!--<li class="active"><a href="#" th:href="@{/login}">Login</a></li>-->
+                        <!--<li><a href="#" th:href="@{/journal/new}">Add</a></li>-->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
                                 <li><a href="#" th:href="@{/user/list}">Users</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#" th:href="@{/registration}">Registration</a></li>
@@ -41,11 +51,10 @@
                         </li>
                     </ul>
 
-
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">User Stuff <span class="caret"></span></a>
+                               aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#" th:href="@{/user/list}">List Users</a></li>
                                 <li><a href="#" th:href="@{/user/new}">New User</a></li>
@@ -60,23 +69,31 @@
                     <!--<div class="navbar-text" sec:authentication="name"></div>-->
                     <!--<p class="navbar-text">Signed in as<div class="navbar-text" sec:authentication="name"></div></p>-->
                     <!--<div th:if="${#authorization.expression('isAnonymous()')== false}">-->
-                        <div class="navbar-form navbar-right">
-                            <div class="navbar-text" >Signed in as:</div>
-                            <div class="navbar-text" sec:authentication="name"></div>
 
-                        </div>
-                    <!--</div>-->
+
+                    <!--<a class="navbar-brand" href="#">;nbsp;nbsp;nbsp;nbsp;/a>-->
+                    <div class="navbar-form navbar-right">
+                        <div class="navbar-text">Signed in as:</div>
+                        <div class="navbar-text" sec:authentication="name"></div>
+
+                    </div>
+
+                    <div sec:authorize="isAuthenticated()==false">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#" th:href="@{/login}">Login</a></li>
+                        </ul>
+                    </div>                    <!--</div>-->
 
                     <!--<div th:if="${#authorization.expression('isAnonymous()')}">-->
-                        <!--<form class="navbar-form navbar-right" th:object="${loginForm}" th:action="@{/login}" method="post">-->
-                            <!--<div class="form-group">-->
-                                <!--<input type="text" class="form-control" placeholder="username"/>-->
-                            <!--</div>-->
-                            <!--<div class="form-group">-->
-                                <!--<input type="password" class="form-control" placeholder="password"/>-->
-                            <!--</div>-->
-                            <!--<button type="submit" class="btn btn-default">Submit</button>-->
-                        <!--</form>-->
+                    <!--<form class="navbar-form navbar-right" th:object="${loginForm}" th:action="@{/login}" method="post">-->
+                    <!--<div class="form-group">-->
+                    <!--<input type="text" class="form-control" placeholder="username"/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<input type="password" class="form-control" placeholder="password"/>-->
+                    <!--</div>-->
+                    <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                    <!--</form>-->
                     <!--</div>-->
                 </div><!-- /.navbar-collapse -->
             </div>
@@ -84,7 +101,8 @@
         <p> space </p>
 
         <div class="panel-dude">
-        </div><h1 th:align="center">Doug Study App</h1>
+        </div>
+        <h1 th:align="center">Doug Study App</h1>
     </div>
 </div>
 </body>
