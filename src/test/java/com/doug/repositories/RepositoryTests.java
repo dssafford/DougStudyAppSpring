@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by doug on 12/25/16.
@@ -32,16 +33,18 @@ public class RepositoryTests {
 
     @Test
     public void testFindProjectByLike(){
-        List<Journal> JournalList = JournalRepository.findByProjectLike("Spring%");
-        assertEquals(2, JournalList.size());
+        List<Journal> journalList = JournalRepository.findByProjectLike("Spring%");
+        assertNotNull(journalList);
+        assertEquals(2, journalList.size());
 
     }
 
 
     @Test
     public void testFindMachineByLike(){
-        List<Journal> JournalList = JournalRepository.findByMachineLike("mbp%");
-        assertEquals(3, JournalList.size());
+        List<Journal> journalList = JournalRepository.findByMachineLike("mbp%");
+        assertNotNull(journalList);
+        assertEquals(3, journalList.size());
 
     }
 }
