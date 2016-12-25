@@ -10,6 +10,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 
 @Service
 @Transactional
@@ -82,6 +84,7 @@ public class JournalServiceImpl implements JournalService {
 
         Journal updatedEntry = this.getJournalById(journal.getId());
         updatedEntry.setId(journal.getId());
+        updatedEntry.setDate_added(new Date());
         updatedEntry.setMachine(journal.getMachine());
         updatedEntry.setDirectory(journal.getDirectory());
         updatedEntry.setProject(journal.getProject());
