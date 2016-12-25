@@ -1,6 +1,6 @@
 package com.doug.repositories;
 
-import com.doug.domain.JournalSql;
+import com.doug.domain.Journal;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,21 +27,21 @@ public class RepositoryTests {
 
 
     @Autowired
-    private JournalSqlRepository journalSqlRepository;
+    private JournalRepository JournalRepository;
 
 
     @Test
     public void testFindProjectByLike(){
-        List<JournalSql> journalSqlList = journalSqlRepository.findByProjectLike("Spring%");
-        assertEquals(2, journalSqlList.size());
+        List<Journal> JournalList = JournalRepository.findByProjectLike("Spring%");
+        assertEquals(2, JournalList.size());
 
     }
 
 
     @Test
     public void testFindMachineByLike(){
-        List<JournalSql> journalSqlList = journalSqlRepository.findByMachineLike("mbp%");
-        assertEquals(3, journalSqlList.size());
+        List<Journal> JournalList = JournalRepository.findByMachineLike("mbp%");
+        assertEquals(3, JournalList.size());
 
     }
 }

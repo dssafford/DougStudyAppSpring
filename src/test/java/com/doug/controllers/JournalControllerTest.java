@@ -1,6 +1,6 @@
 package com.doug.controllers;
 
-import com.doug.domain.JournalSql;
+import com.doug.domain.Journal;
 import com.doug.services.JournalService;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,12 +42,12 @@ public class JournalControllerTest {
 	@Test
 	public void testList() throws Exception{
 
-		List<JournalSql> journalSqls = new ArrayList<>();
-		journalSqls.add(new JournalSql());
-		journalSqls.add(new JournalSql());
+		List<Journal> Journals = new ArrayList<>();
+		Journals.add(new Journal());
+		Journals.add(new Journal());
 
 		//specific Mockito interaction, tell stub to return list of Journals
-		when(journalService.listAllJournals()).thenReturn((List) journalSqls); //need to strip generics to keep Mockito happy.
+		when(journalService.listAllJournals()).thenReturn((List) Journals); //need to strip generics to keep Mockito happy.
 
 		mockMvc.perform(get("/journal/list"))
 				  .andExpect(status().isOk())
@@ -60,12 +60,12 @@ public class JournalControllerTest {
 		Integer id = 1;
 
 		//Tell Mockito stub to return new Journal for ID 1
-		when(journalService.getJournalById(id)).thenReturn(new JournalSql());
+		when(journalService.getJournalById(id)).thenReturn(new Journal());
 
 		mockMvc.perform(get("/journal/1"))
 				  .andExpect(status().isOk())
 				  .andExpect(view().name("journal/journalshow"))
-				  .andExpect(model().attribute("journal", instanceOf(JournalSql.class)));
+				  .andExpect(model().attribute("journal", instanceOf(Journal.class)));
 	}
 
 	@Test
@@ -73,12 +73,12 @@ public class JournalControllerTest {
 		Integer id = 1;
 
 		//Tell Mockito stub to return new Journal for ID 1
-		when(journalService.getJournalById(id)).thenReturn(new JournalSql());
+		when(journalService.getJournalById(id)).thenReturn(new Journal());
 
 		mockMvc.perform(get("/journal/edit/1"))
 				  .andExpect(status().isOk())
 				  .andExpect(view().name("/journal/journaledit"))
-				  .andExpect(model().attribute("journal", instanceOf(JournalSql.class)));
+				  .andExpect(model().attribute("journal", instanceOf(Journal.class)));
 	}
 
 	@Test
@@ -91,7 +91,7 @@ public class JournalControllerTest {
 		mockMvc.perform(get("/journal/new"))
 				  .andExpect(status().isOk())
 				  .andExpect(view().name("journal/journalformnew"))
-				  .andExpect(model().attribute("journal", instanceOf(JournalSql.class)));
+				  .andExpect(model().attribute("journal", instanceOf(Journal.class)));
 	}
 
 	@Test
@@ -102,14 +102,14 @@ public class JournalControllerTest {
 		String project = "Test Project";
 		String comments = "My Comments";
 
-		JournalSql returnJournal = new JournalSql();
+		Journal returnJournal = new Journal();
 		returnJournal.setId(id);
 		returnJournal.setMachine(machine);
 		returnJournal.setProject(project);
 		returnJournal.setDirectory(directory);
 		returnJournal.setComments(comments);
 
-		when(journalService.saveOrUpdateJournal(Matchers.<JournalSql>any())).thenReturn(returnJournal);
+		when(journalService.saveOrUpdateJournal(Matchers.<Journal>any())).thenReturn(returnJournal);
 
 		mockMvc.perform(post("/dojournal")
 				  .param("id", "1")
@@ -119,15 +119,15 @@ public class JournalControllerTest {
 				  .param("comments", comments))
 				  .andExpect(status().is3xxRedirection())
 				  .andExpect(view().name("redirect:/journal/paging"))
-				  .andExpect(model().attribute("journalSql", instanceOf(JournalSql.class)))
-				  .andExpect(model().attribute("journalSql", hasProperty("id", is(id))))
-				  .andExpect(model().attribute("journalSql", hasProperty("machine", is(machine))))
-				  .andExpect(model().attribute("journalSql", hasProperty("project", is(project))))
-				  .andExpect(model().attribute("journalSql", hasProperty("comments", is(comments))))
-				  .andExpect(model().attribute("journalSql", hasProperty("directory", is(directory))));
+				  .andExpect(model().attribute("Journal", instanceOf(Journal.class)))
+				  .andExpect(model().attribute("Journal", hasProperty("id", is(id))))
+				  .andExpect(model().attribute("Journal", hasProperty("machine", is(machine))))
+				  .andExpect(model().attribute("Journal", hasProperty("project", is(project))))
+				  .andExpect(model().attribute("Journal", hasProperty("comments", is(comments))))
+				  .andExpect(model().attribute("Journal", hasProperty("directory", is(directory))));
 
 		//verify properties of bound object
-		ArgumentCaptor<JournalSql> boundJournal = ArgumentCaptor.forClass(JournalSql.class);
+		ArgumentCaptor<Journal> boundJournal = ArgumentCaptor.forClass(Journal.class);
    		verify(journalService).saveOrUpdateJournal(boundJournal.capture());
 
 		assertEquals(id, boundJournal.getValue().getId());

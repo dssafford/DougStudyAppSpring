@@ -1,7 +1,7 @@
 package com.doug.services;
 
-import com.doug.domain.JournalSql;
-import com.doug.repositories.JournalSqlRepository;
+import com.doug.domain.Journal;
+import com.doug.repositories.JournalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,11 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class JournalServiceImpl implements JournalService {
-    private JournalSqlRepository journalSqlRepository;
+    private JournalRepository JournalRepository;
 
     @Autowired
-    public void setJournalRepository(JournalSqlRepository journalSqlRepository) {
-        this.journalSqlRepository = journalSqlRepository;
+    public void setJournalRepository(JournalRepository JournalRepository) {
+        this.JournalRepository = JournalRepository;
     }
 
 
@@ -27,12 +27,12 @@ public class JournalServiceImpl implements JournalService {
     }
 
 //    @Override
-//    public Iterable<JournalSql> findByProjectLike(String projectName) {
-//        return journalSqlRepository.findByProjectLike(projectName);
+//    public Iterable<Journal> findByProjectLike(String projectName) {
+//        return JournalRepository.findByProjectLike(projectName);
 //    }
 
     @Override
-    public Page<JournalSql> listAllByPage(Pageable pageable, String sortColumn, String sortDirection) {
+    public Page<Journal> listAllByPage(Pageable pageable, String sortColumn, String sortDirection) {
 
 
 
@@ -56,60 +56,60 @@ public class JournalServiceImpl implements JournalService {
 //        Sort newSort = new Sort(sort, sortProperty);
 
 
-       return journalSqlRepository.findAll(createPageRequest(pageNumber, pageSize, sort));
+       return JournalRepository.findAll(createPageRequest(pageNumber, pageSize, sort));
     }
 
 
     @Override
-    public Iterable<JournalSql> listAllJournals() {
-        return journalSqlRepository.findAll();
+    public Iterable<Journal> listAllJournals() {
+        return JournalRepository.findAll();
     }
 
     @Override
-    public JournalSql getJournalById(Integer id) {
-        return journalSqlRepository.findOne(id);
+    public Journal getJournalById(Integer id) {
+        return JournalRepository.findOne(id);
     }
 
 //    @Override
 //    public JournalCommand
 
     @Override
-    public JournalSql saveOrUpdateJournal(JournalSql journal) {
+    public Journal saveOrUpdateJournal(Journal journal) {
 
         if(journal.getId()==null) {
-            return journalSqlRepository.save(journal);
+            return JournalRepository.save(journal);
         }
 
-        JournalSql updatedEntry = this.getJournalById(journal.getId());
+        Journal updatedEntry = this.getJournalById(journal.getId());
         updatedEntry.setId(journal.getId());
         updatedEntry.setMachine(journal.getMachine());
         updatedEntry.setDirectory(journal.getDirectory());
         updatedEntry.setProject(journal.getProject());
         updatedEntry.setComments(journal.getComments());
 
-        return journalSqlRepository.save(updatedEntry);
+        return JournalRepository.save(updatedEntry);
 
     }
 
     @Override
     public void deleteJournal(Integer id) {
-        JournalSql journalSql = journalSqlRepository.findOne(id);
-        journalSqlRepository.delete(id);
+        Journal Journal = JournalRepository.findOne(id);
+        JournalRepository.delete(id);
     }
 
 
 //    @Override
 //    public Iterable<Journal> listAllJournals() {
-//        return journalSqlRepository.findAll();
+//        return JournalRepository.findAll();
 //    }
 //
 //    @Override
 //    public Journal getJournalById(Integer id) {
-//        return journalSqlRepository.findOne(id);
+//        return JournalRepository.findOne(id);
 //    }
 //
 //    @Override
 //    public Journal saveJournal(Journal journal) {
-//        return journalSqlRepository.save(journal);
+//        return JournalRepository.save(journal);
 //    }
 }

@@ -1,7 +1,7 @@
 package com.doug.controllers;
 
 import com.doug.commands.JournalCommand;
-import com.doug.domain.JournalSql;
+import com.doug.domain.Journal;
 import com.doug.domain.SortProperties;
 import com.doug.services.JournalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,7 +87,7 @@ public class JournalController {
     @RequestMapping(value = "/journal/new", method = RequestMethod.GET)
     public String newJournal(Model model){
 
-        model.addAttribute("journal", new JournalSql());
+        model.addAttribute("journal", new Journal());
         model.addAttribute("journalCommand", new JournalCommand());
 
 
@@ -96,15 +96,15 @@ public class JournalController {
 
     @RequestMapping(value = "/dojournal", method = RequestMethod.POST)
     public String doJournal(@Valid JournalCommand journalCommand, BindingResult bindingResult,
-                            JournalSql journal){
+                            Journal journal){
 
         if (bindingResult.hasErrors()) {
             return "journal/journalformnew";
         }
 
-        JournalSql journalSql = journalService.saveOrUpdateJournal(journal);
+        Journal Journal = journalService.saveOrUpdateJournal(journal);
 
-//        return "redirect:/journal/" + journalSql.getId();
+//        return "redirect:/journal/" + Journal.getId();
         return "redirect:/journal/paging";
 
     }

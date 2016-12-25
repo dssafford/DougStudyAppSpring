@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "journals")
-public class JournalSql {
+public class Journal {
 
 
 	@Id
@@ -83,6 +83,6 @@ public class JournalSql {
 	private String comments;
 
 
-	public JournalSql() {
+	public Journal() {
 	}
 }
