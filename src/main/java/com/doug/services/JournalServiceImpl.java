@@ -26,6 +26,11 @@ public class JournalServiceImpl implements JournalService {
         return new PageRequest(pageNumber, pageSize , sort);
     }
 
+//    @Override
+//    public Iterable<JournalSql> findByProjectLike(String projectName) {
+//        return journalSqlRepository.findByProjectLike(projectName);
+//    }
+
     @Override
     public Page<JournalSql> listAllByPage(Pageable pageable, String sortColumn, String sortDirection) {
 

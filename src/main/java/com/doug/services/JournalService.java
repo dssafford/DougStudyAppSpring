@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 
+import java.util.List;
+
 public interface JournalService {
 
     Iterable<JournalSql> listAllJournals();
@@ -18,4 +20,5 @@ public interface JournalService {
 
     Page<JournalSql> listAllByPage(@PageableDefault(size = 10) Pageable pageable, String sortColumn, String sortDirection);
 
+//    Iterable<JournalSql> findByProjectLike(String projectName);
 }
