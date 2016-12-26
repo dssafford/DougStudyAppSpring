@@ -18,6 +18,7 @@ import javax.validation.Valid;
 
 @Controller
 public class JournalController {
+    private Integer counter =0;
 
     private JournalService journalService;
 
@@ -28,8 +29,15 @@ public class JournalController {
 
     @RequestMapping(value="/journal/paging",method=RequestMethod.GET)
     public String journalPaging(Pageable pageable, Model model, @ModelAttribute SortProperties sortProperties) {
-
+        counter = counter +1;
 //        pageable.first();
+
+//        if(sortProperties.getsortColumn()==null) {
+//            sortProperties.setsortColumn("id");
+//        }
+//        if(sortProperties.getSortDirection()==null) {
+//            sortProperties.setSortDirection("ASC");
+//        }
 
         model.addAttribute("journals", journalService.listAllByPage(pageable, sortProperties.getsortColumn(),
                 sortProperties.getSortDirection()));
@@ -46,6 +54,13 @@ public class JournalController {
 
 
         //Sort.Order myorder = new Sort.Order(sortProperties.getSortDirection(), sortProperties.getsortColumn());
+
+        if(sortProperties.getsortColumn()==null) {
+            sortProperties.setsortColumn("machine");
+        }
+        if(sortProperties.getSortDirection()==null) {
+            sortProperties.setSortDirection("DESC");
+        }
 
 
         model.addAttribute("journals", journalService.listAllByPage(pageable, sortProperties.getsortColumn(),
