@@ -1,8 +1,9 @@
 package com.doug.controllers;
 
 import com.doug.commands.JournalCommand;
-import com.doug.domain.JournalSql;
+import com.doug.domain.Journal;
 import com.doug.domain.SortProperties;
+import com.doug.domain.TestSort;
 import com.doug.services.JournalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,7 @@ import javax.validation.Valid;
 
 @Controller
 public class JournalController {
+    private Integer counter =0;
 
     private JournalService journalService;
 
@@ -26,10 +28,31 @@ public class JournalController {
         this.journalService = journalService;
     }
 
+
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String testPaging(Pageable pageable, Model model) {
+
+        TestSort testSort = new TestSort();
+        testSort.setResult("machine&machine.dir=asc");
+
+        model.addAttribute("journals", journalService.listAllByPage(pageable));
+        model.addAttribute(testSort);
+
+        return "journal/journalsPagingWorking";
+    }
+
     @RequestMapping(value="/journal/paging",method=RequestMethod.GET)
     public String journalPaging(Pageable pageable, Model model, @ModelAttribute SortProperties sortProperties) {
-
+        counter = counter +1;
 //        pageable.first();
+
+//        if(sortProperties.getsortColumn()==null) {
+//            sortProperties.setsortColumn("id");
+//        }
+//        if(sortProperties.getSortDirection()==null) {
+//            sortProperties.setSortDirection("ASC");
+//        }
 
         model.addAttribute("journals", journalService.listAllByPage(pageable, sortProperties.getsortColumn(),
                 sortProperties.getSortDirection()));
@@ -47,6 +70,13 @@ public class JournalController {
 
         //Sort.Order myorder = new Sort.Order(sortProperties.getSortDirection(), sortProperties.getsortColumn());
 
+        if(sortProperties.getsortColumn()==null) {
+            sortProperties.setsortColumn("machine");
+        }
+        if(sortProperties.getSortDirection()==null) {
+            sortProperties.setSortDirection("DESC");
+        }
+
 
         model.addAttribute("journals", journalService.listAllByPage(pageable, sortProperties.getsortColumn(),
                 sortProperties.getSortDirection()));
@@ -54,10 +84,6 @@ public class JournalController {
         return "/journal/journalsPaging";
 
     }
-
-
-
-
 
 
     @RequestMapping(value = "/journal/list", method = RequestMethod.GET)
@@ -91,7 +117,7 @@ public class JournalController {
     @RequestMapping(value = "/journal/new", method = RequestMethod.GET)
     public String newJournal(Model model){
 
-        model.addAttribute("journal", new JournalSql());
+        model.addAttribute("journal", new Journal());
         model.addAttribute("journalCommand", new JournalCommand());
 
 
@@ -100,15 +126,15 @@ public class JournalController {
 
     @RequestMapping(value = "/dojournal", method = RequestMethod.POST)
     public String doJournal(@Valid JournalCommand journalCommand, BindingResult bindingResult,
-                            JournalSql journal){
+                            Journal journal){
 
         if (bindingResult.hasErrors()) {
             return "journal/journalformnew";
         }
 
-        JournalSql journalSql = journalService.saveOrUpdateJournal(journal);
+        Journal Journal = journalService.saveOrUpdateJournal(journal);
 
-//        return "redirect:/journal/" + journalSql.getId();
+//        return "redirect:/journal/" + Journal.getId();
         return "redirect:/journal/paging";
 
     }

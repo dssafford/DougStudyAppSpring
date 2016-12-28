@@ -29,17 +29,7 @@
 
     <div th:if="${not #lists.isEmpty(journals)}">
         <h2 class="formHeader">Journal List</h2>
-        <div>Sort Column: <span th:text="${sortProperties.sortColumn}">text</span></div>
-        <div>Sort Direction: <span th:text="${sortProperties.sortDirection}">text</span></div>
         <form class="form-horizontal" th:object="${sortProperty}" th:action="@{/doSort}" method="post">
-
-            <select th:name="queryEatShit">
-                <option th:value="id" th:selected="(${sortProperties.sortColumn}=='id')"> id</option>
-                <option th:value="machine" th:selected="(${sortProperties.sortColumn}=='machine')">machine</option>
-                <option th:value="project" th:selected="(${sortProperties.sortColumn}=='project')"> project</option>
-                <option th:value="directory" th:selected="(${sortProperties.sortColumn}=='directory')">directory</option>
-
-            </select>
             <div class="form-group">
                 <label class="col-sm-5 control-label" th:align="left">Sort By:</label>
 

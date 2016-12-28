@@ -1,21 +1,24 @@
 package com.doug.services;
 
 
-import com.doug.domain.JournalSql;
+import com.doug.domain.Journal;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 
 public interface JournalService {
 
-    Iterable<JournalSql> listAllJournals();
+    Iterable<Journal> listAllJournals();
 
-    JournalSql getJournalById(Integer id);
+    Journal getJournalById(Integer id);
 
-    JournalSql saveOrUpdateJournal(JournalSql journal);
+    Journal saveOrUpdateJournal(Journal journal);
 
     void deleteJournal(Integer id);
 
-    Page<JournalSql> listAllByPage(@PageableDefault(size = 10) Pageable pageable, String sortColumn, String sortDirection);
+    Page<Journal> listAllByPage(@PageableDefault(size = 10) Pageable pageable, String sortColumn, String sortDirection);
 
+    Page<Journal> listAllByPage(@PageableDefault(size = 10) Pageable pageable);
+
+//    Iterable<Journal> findByProjectLike(String projectName);
 }

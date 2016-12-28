@@ -29,51 +29,51 @@
 
     <div th:if="${not #lists.isEmpty(journals)}">
         <h2 class="formHeader">Journal List</h2>
-        <div>Sort Column: <span th:text="${sortProperties.sortColumn}">text</span></div>
-        <div>Sort Direction: <span th:text="${sortProperties.sortDirection}">text</span></div>
-        <form class="form-horizontal" th:object="${sortProperty}" th:action="@{/doSort}" method="post">
+        <!--<div>Sort Column: <span th:text="${sortProperties.sortColumn}">text</span></div>-->
+        <!--<div>Sort Direction: <span th:text="${sortProperties.sortDirection}">text</span></div>-->
+        <!--<form class="form-horizontal" th:object="${sortProperty}" th:action="@{/doSort}" method="post">-->
 
-            <select th:name="queryEatShit">
-                <option th:value="id" th:selected="(${sortProperties.sortColumn}=='id')"> id</option>
-                <option th:value="machine" th:selected="(${sortProperties.sortColumn}=='machine')">machine</option>
-                <option th:value="project" th:selected="(${sortProperties.sortColumn}=='project')"> project</option>
-                <option th:value="directory" th:selected="(${sortProperties.sortColumn}=='directory')">directory</option>
+            <!--<select th:name="queryEatShit">-->
+                <!--<option th:value="id" th:selected="(${sortProperties.sortColumn}=='id')"> id</option>-->
+                <!--<option th:value="machine" th:selected="(${sortProperties.sortColumn}=='machine')">machine</option>-->
+                <!--<option th:value="project" th:selected="(${sortProperties.sortColumn}=='project')"> project</option>-->
+                <!--<option th:value="directory" th:selected="(${sortProperties.sortColumn}=='directory')">directory</option>-->
 
-            </select>
-            <div class="form-group">
-                <label class="col-sm-5 control-label" th:align="left">Sort By:</label>
+            <!--</select>-->
+            <!--<div class="form-group">-->
+                <!--<label class="col-sm-5 control-label" th:align="left">Sort By:</label>-->
 
-                <select th:name="sortColumn">
-                    <option th:value="id" th:selected="(${sortProperties.sortColumn}=='id')"> id</option>
-                    <option th:value="machine" th:selected="(${sortProperties.sortColumn}=='machine')">machine</option>
-                    <option th:value="project" th:selected="(${sortProperties.sortColumn}=='project')"> project</option>
-                    <option th:value="directory" th:selected="(${sortProperties.sortColumn}=='directory')">directory</option>
+                <!--<select th:name="sortColumn">-->
+                    <!--<option th:value="id" th:selected="(${sortProperties.sortColumn}=='id')"> id</option>-->
+                    <!--<option th:value="machine" th:selected="(${sortProperties.sortColumn}=='machine')">machine</option>-->
+                    <!--<option th:value="project" th:selected="(${sortProperties.sortColumn}=='project')"> project</option>-->
+                    <!--<option th:value="directory" th:selected="(${sortProperties.sortColumn}=='directory')">directory</option>-->
 
-                </select>
-                <button th:type="submit">Sort</button>
-                <div class="shit">
-                    <input type="radio" name="sortDirection" value="ASC" th:checked="(${sortProperties.sortDirection}=='ASC')"> Ascending</input>
-                    <input type="radio" name="sortDirection" value="DESC" th:checked="(${sortProperties.sortDirection}=='DESC')"> Descending</input>
-                </div>
-            </div>
+                <!--</select>-->
+                <!--<button th:type="submit">Sort</button>-->
+                <!--<div class="shit">-->
+                    <!--<input type="radio" name="sortDirection" value="ASC" th:checked="(${sortProperties.sortDirection}=='ASC')"> Ascending</input>-->
+                    <!--<input type="radio" name="sortDirection" value="DESC" th:checked="(${sortProperties.sortDirection}=='DESC')"> Descending</input>-->
+                <!--</div>-->
+            <!--</div>-->
 
-        </form>
-
+        <!--</form>-->
+        <!--<div>Sort Column: <span th:text="${testSort.result}">text</span></div>-->
         <div class="panel panel-default">
             <nav th:align="center">
                 <ul class="pagination" th:with="total = ${journals.totalPages}">
                     <li th:if="${journals.hasPrevious()}">
-                        <a th:href="@{/journal/paging(page=${journals.previousPageable().pageNumber},size=${journals.size})}"
+                        <a th:href="@{/test(page=${journals.previousPageable().pageNumber},size=${journals.size})}"
                            aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
                     <li th:each="page : ${#numbers.sequence(0, total - 1)}"><a
-                            th:href="@{/journal/paging(page=${page},size=${journals.size})}"
+                            th:href="@{/test(page=${page},size=${journals.size},sort='machine',machine.dir='desc')}"
                             th:text="${page + 1}">1</a>
                     </li>
                     <li th:if="${journals.hasNext()}">
-                        <a th:href="@{/journal/paging(page=${journals.nextPageable().pageNumber},size=${journals.size})}"
+                        <a th:href="@{/test(page=${journals.nextPageable().pageNumber},size=${journals.size})}"
                            aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>

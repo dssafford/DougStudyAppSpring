@@ -1,7 +1,7 @@
 package com.doug.services;
 
-import com.doug.domain.JournalSql;
-import com.doug.repositories.JournalSqlRepository;
+import com.doug.domain.Journal;
+import com.doug.repositories.JournalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,36 +10,53 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 
 @Service
 @Transactional
 public class JournalServiceImpl implements JournalService {
-    private JournalSqlRepository journalSqlRepository;
+    private JournalRepository journalRepository;
 
     @Autowired
-    public void setJournalRepository(JournalSqlRepository journalSqlRepository) {
-        this.journalSqlRepository = journalSqlRepository;
+    public void setJournalRepository(JournalRepository JournalRepository) {
+        this.journalRepository = JournalRepository;
     }
 
 
     private Pageable createPageRequest(Integer pageNumber, Integer pageSize, Sort sort) {
-        return new PageRequest(pageNumber, pageSize , sort);
+        return new PageRequest(pageNumber, pageSize, sort);
+    }
+
+    private Pageable createPageRequest(Integer pageNumber, Integer pageSize) {
+        return new PageRequest(pageNumber, pageSize);
+    }
+
+
+    @Override
+    public Page<Journal> listAllByPage(Pageable pageable) {
+
+        Integer pageNumber = pageable.getPageNumber();
+        Integer pageSize = pageable.getPageSize();
+
+        return journalRepository.findAll(pageable);
+
+
     }
 
     @Override
-    public Page<JournalSql> listAllByPage(Pageable pageable, String sortColumn, String sortDirection) {
-
+    public Page<Journal> listAllByPage(Pageable pageable, String sortColumn, String sortDirection) {
 
 
         Sort sort;
 
-        if(sortColumn==null) {
-            sortColumn="id";
+        if (sortColumn == null) {
+            sortColumn = "id";
         }
 
-        if(sortDirection==null) {
+        if (sortDirection == null) {
             sort = new Sort(Sort.Direction.ASC, sortColumn);
-        } else if(sortDirection.equals("DESC")) {
+        } else if (sortDirection.equals("DESC")) {
             sort = new Sort(Sort.Direction.DESC, sortColumn);
         } else {
             sort = new Sort(Sort.Direction.ASC, sortColumn);
@@ -51,60 +68,45 @@ public class JournalServiceImpl implements JournalService {
 //        Sort newSort = new Sort(sort, sortProperty);
 
 
-       return journalSqlRepository.findAll(createPageRequest(pageNumber, pageSize, sort));
+        return journalRepository.findAll(createPageRequest(pageNumber, pageSize, sort));
     }
 
 
     @Override
-    public Iterable<JournalSql> listAllJournals() {
-        return journalSqlRepository.findAll();
+    public Iterable<Journal> listAllJournals() {
+        return journalRepository.findAll();
     }
 
     @Override
-    public JournalSql getJournalById(Integer id) {
-        return journalSqlRepository.findOne(id);
+    public Journal getJournalById(Integer id) {
+        return journalRepository.findOne(id);
     }
 
 //    @Override
 //    public JournalCommand
 
     @Override
-    public JournalSql saveOrUpdateJournal(JournalSql journal) {
+    public Journal saveOrUpdateJournal(Journal journal) {
 
-        if(journal.getId()==null) {
-            return journalSqlRepository.save(journal);
+        if (journal.getId() == null) {
+            return journalRepository.save(journal);
         }
 
-        JournalSql updatedEntry = this.getJournalById(journal.getId());
+        Journal updatedEntry = this.getJournalById(journal.getId());
         updatedEntry.setId(journal.getId());
+        updatedEntry.setDate_added(new Date());
         updatedEntry.setMachine(journal.getMachine());
         updatedEntry.setDirectory(journal.getDirectory());
         updatedEntry.setProject(journal.getProject());
         updatedEntry.setComments(journal.getComments());
 
-        return journalSqlRepository.save(updatedEntry);
+        return journalRepository.save(updatedEntry);
 
     }
 
     @Override
     public void deleteJournal(Integer id) {
-        JournalSql journalSql = journalSqlRepository.findOne(id);
-        journalSqlRepository.delete(id);
+        Journal Journal = journalRepository.findOne(id);
+        journalRepository.delete(id);
     }
-
-
-//    @Override
-//    public Iterable<Journal> listAllJournals() {
-//        return journalSqlRepository.findAll();
-//    }
-//
-//    @Override
-//    public Journal getJournalById(Integer id) {
-//        return journalSqlRepository.findOne(id);
-//    }
-//
-//    @Override
-//    public Journal saveJournal(Journal journal) {
-//        return journalSqlRepository.save(journal);
-//    }
 }

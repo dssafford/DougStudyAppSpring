@@ -58,6 +58,9 @@ public class UserServiceRepoImpl implements UserService {
 
     @Override
     public User saveOrUpdateUser(User user) {
+        if(user.getPassword() != null){
+            user.setEncryptedPassword(encryptionService.encryptString(user.getPassword()));
+        }
 
         if(user.getId()==null) {
             return userRepository.save(user);

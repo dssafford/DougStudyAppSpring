@@ -2,6 +2,7 @@ package com.doug.domain;
 
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "journals")
-public class JournalSql {
+public class Journal {
 
 
 	@Id
@@ -31,14 +32,6 @@ public class JournalSql {
 
 	public void setVersion(Integer version) {
 		this.version = version;
-	}
-
-	public Date getMyDate() {
-		return myDate;
-	}
-
-	public void setMyDate(Date myDate) {
-		this.myDate = myDate;
 	}
 
 	public String getMachine() {
@@ -76,13 +69,39 @@ public class JournalSql {
 	@Version
 	private Integer version;
 
-	private Date myDate;
+	private Date date_added;
 	private String machine;
 	private String directory;
 	private String project;
+	private String technology;
+
+	public String getTechnology() {
+		return technology;
+	}
+
+	public void setTechnology(String technology) {
+		this.technology = technology;
+	}
+
 	private String comments;
+	private Boolean isActive;
 
+	public Date getDate_added() {
+		return date_added;
+	}
 
-	public JournalSql() {
+	public void setDate_added(Date date_added) {
+		this.date_added = date_added;
+	}
+
+	public Boolean getActive() {
+		return isActive;
+	}
+
+	public void setActive(Boolean active) {
+		isActive = active;
+	}
+
+	public Journal() {
 	}
 }
