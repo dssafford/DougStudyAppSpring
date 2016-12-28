@@ -3,6 +3,7 @@ package com.doug.controllers;
 import com.doug.commands.JournalCommand;
 import com.doug.domain.Journal;
 import com.doug.domain.SortProperties;
+import com.doug.domain.TestSort;
 import com.doug.services.JournalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,20 @@ public class JournalController {
     @Autowired
     public void setJournalService(JournalService journalService) {
         this.journalService = journalService;
+    }
+
+
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String testPaging(Pageable pageable, Model model) {
+
+        TestSort testSort = new TestSort();
+        testSort.setResult("machine&machine.dir=asc");
+
+        model.addAttribute("journals", journalService.listAllByPage(pageable));
+        model.addAttribute(testSort);
+
+        return "journal/journalsPagingWorking";
     }
 
     @RequestMapping(value="/journal/paging",method=RequestMethod.GET)

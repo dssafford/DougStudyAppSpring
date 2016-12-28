@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+
+
+    <title>Doug Study App</title>
+
+    <th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+<div class="container">
+    <!--<dt class="bookHeadline">-->
+    <!--<span th:text="Bookie">Title</span> by-->
+    <!--<span th:text="Baby">Author</span>-->
+    <!--(ISBN: <span th:text="booboo">ISBN</span>)-->
+    <!--</dt>-->
+    <!--<dd class="bookDescription">-->
+    <!--<span th:text="mybook">Description</span> by-->
+    <!--<span th:text="eatshit">-->
+    <!--No description available</span>-->
+    <!--</dd>-->
+    <th:block th:include="fragments/header :: header"></th:block>
+
+
+    <!--<ol>-->
+    <!--<li th:each="journal, it : ${journals}" th:with="index = ${it.count}" th:text="${journal.id + ' - ' + journal.project}" th:value="${1 * journals.size + index}">Id</li>-->
+    <!--</ol>-->
+
+
+    <div th:if="${not #lists.isEmpty(journals)}">
+        <h2 class="formHeader">Journal List</h2>
+        <!--<div>Sort Column: <span th:text="${sortProperties.sortColumn}">text</span></div>-->
+        <!--<div>Sort Direction: <span th:text="${sortProperties.sortDirection}">text</span></div>-->
+        <!--<form class="form-horizontal" th:object="${sortProperty}" th:action="@{/doSort}" method="post">-->
+
+            <!--<select th:name="queryEatShit">-->
+                <!--<option th:value="id" th:selected="(${sortProperties.sortColumn}=='id')"> id</option>-->
+                <!--<option th:value="machine" th:selected="(${sortProperties.sortColumn}=='machine')">machine</option>-->
+                <!--<option th:value="project" th:selected="(${sortProperties.sortColumn}=='project')"> project</option>-->
+                <!--<option th:value="directory" th:selected="(${sortProperties.sortColumn}=='directory')">directory</option>-->
+
+            <!--</select>-->
+            <!--<div class="form-group">-->
+                <!--<label class="col-sm-5 control-label" th:align="left">Sort By:</label>-->
+
+                <!--<select th:name="sortColumn">-->
+                    <!--<option th:value="id" th:selected="(${sortProperties.sortColumn}=='id')"> id</option>-->
+                    <!--<option th:value="machine" th:selected="(${sortProperties.sortColumn}=='machine')">machine</option>-->
+                    <!--<option th:value="project" th:selected="(${sortProperties.sortColumn}=='project')"> project</option>-->
+                    <!--<option th:value="directory" th:selected="(${sortProperties.sortColumn}=='directory')">directory</option>-->
+
+                <!--</select>-->
+                <!--<button th:type="submit">Sort</button>-->
+                <!--<div class="shit">-->
+                    <!--<input type="radio" name="sortDirection" value="ASC" th:checked="(${sortProperties.sortDirection}=='ASC')"> Ascending</input>-->
+                    <!--<input type="radio" name="sortDirection" value="DESC" th:checked="(${sortProperties.sortDirection}=='DESC')"> Descending</input>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        <!--</form>-->
+        <!--<div>Sort Column: <span th:text="${testSort.result}">text</span></div>-->
+        <div class="panel panel-default">
+            <nav th:align="center">
+                <ul class="pagination" th:with="total = ${journals.totalPages}">
+                    <li th:if="${journals.hasPrevious()}">
+                        <a th:href="@{/test(page=${journals.previousPageable().pageNumber},size=${journals.size})}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li th:each="page : ${#numbers.sequence(0, total - 1)}"><a
+                            th:href="@{/test(page=${page},size=${journals.size},sort='machine',machine.dir='desc')}"
+                            th:text="${page + 1}">1</a>
+                    </li>
+                    <li th:if="${journals.hasNext()}">
+                        <a th:href="@{/test(page=${journals.nextPageable().pageNumber},size=${journals.size})}"
+                           aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="panel-body">
+                <table class="table table-bordered" bgcolor="#f0f8ff">
+                    <tr>
+                        <th>ID</th>
+                        <th>Machine</th>
+                        <th>Project</th>
+                        <th>Directory</th>
+                        <th>Comments</th>
+                        <th>View</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr th:each="journal : ${journals}">
+                        <td th:text="${journal.id}"><a href="/journals/${journal.id}">Id</a></td>
+                        <td th:text="${journal.machine}">machine</td>
+                        <td th:text="${journal.project}">project</td>
+                        <td th:text="${journal.directory}">directory</td>
+                        <td th:text="${journal.comments}">comments</td>
+                        <td><a th:href="${ '/journal/' + journal.id}">View</a></td>
+                        <td><a th:href="${'/journal/edit/' + journal.id}">Edit</a></td>
+                        <td><a th:href="${'/journal/delete/' + journal.id}">Delete</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" th:replace="fragments/footer :: footer">
+    <p>footer</p>
+</div>
+</body>
+</html>

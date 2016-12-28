@@ -5,12 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Profile;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
-
 
 import java.util.List;
 
@@ -28,23 +24,43 @@ public class RepositoryTests {
 
 
     @Autowired
-    private JournalRepository JournalRepository;
+    private JournalRepository journalRepository;
 
 
     @Test
     public void testFindProjectByLike(){
-        List<Journal> journalList = JournalRepository.findByProjectLike("Spring%");
+        List<Journal> journalList = journalRepository.findByProjectLike("Spring%");
         assertNotNull(journalList);
-        assertEquals(2, journalList.size());
+        assertEquals(6, journalList.size());
 
     }
 
 
     @Test
     public void testFindMachineByLike(){
-        List<Journal> journalList = JournalRepository.findByMachineLike("mbp%");
+        List<Journal> journalList = journalRepository.findByMachineLike("mbp%");
         assertNotNull(journalList);
-        assertEquals(3, journalList.size());
+        assertEquals(42, journalList.size());
 
+    }
+
+    @Test
+    public void testCountByMachineName(){
+        assertNotNull(journalRepository.countByMachine("iMAC"));
+
+        assertEquals(new Long(18), journalRepository.countByMachine("iMAC"));
+    }
+
+//    final Page<Something> page = new PageImpl<>(theListOfSomething);
+
+    @Test
+    public void testPageByMachineName(){
+        assertNotNull(journalRepository.findByMachineLike("iMAC"));
+
+        //PageImpl page = new PageImpl(journalRepository.findByMachineLike("iMac"));
+
+        assertEquals(8, journalRepository.findByMachineLike("iMac").size());
+
+        //System.out.println("Hey Doug, anything show up?:" + journalRepository.findByMachineLike("iMac"));
     }
 }
