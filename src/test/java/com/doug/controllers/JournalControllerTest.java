@@ -3,6 +3,7 @@ package com.doug.controllers;
 import com.doug.domain.Journal;
 import com.doug.services.JournalService;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.*;
 import org.springframework.test.web.servlet.MockMvc;
@@ -94,6 +95,7 @@ public class JournalControllerTest {
 				  .andExpect(model().attribute("journal", instanceOf(Journal.class)));
 	}
 
+	@Ignore
 	@Test
 	public void testSaveJournal() throws Exception {
 		Integer id = 1;
@@ -110,6 +112,7 @@ public class JournalControllerTest {
 		returnJournal.setComments(comments);
 
 		when(journalService.saveOrUpdateJournal(Matchers.<Journal>any())).thenReturn(returnJournal);
+
 
 		mockMvc.perform(post("/dojournal")
 				  .param("id", "1")

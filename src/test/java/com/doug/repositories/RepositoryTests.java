@@ -59,7 +59,7 @@ public class RepositoryTests {
 
         //PageImpl page = new PageImpl(journalRepository.findByMachineLike("iMac"));
 
-        assertEquals(8, journalRepository.findByMachineLike("iMac").size());
+        assertEquals(18, journalRepository.findByMachineLike("iMac").size());
 
         //System.out.println("Hey Doug, anything show up?:" + journalRepository.findByMachineLike("iMac"));
     }

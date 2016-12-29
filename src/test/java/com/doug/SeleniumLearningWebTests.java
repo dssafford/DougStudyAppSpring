@@ -34,6 +34,7 @@ public class SeleniumLearningWebTests {
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
+    @Ignore
     @Test
     public void loginSubmitGoodTest() {
 //        Ensure that we don't get an exception for good login
@@ -56,6 +57,7 @@ public class SeleniumLearningWebTests {
 
     }
 
+    @Ignore
     @Test
     public void differentWaysToUseDriverAndFindElements() {
         String baseUrl = "http://localhost:" + port + "/login";
@@ -77,6 +79,7 @@ public class SeleniumLearningWebTests {
 
     }
 
+    @Ignore
     @Test
     public void findByCSSSelector() {
 
