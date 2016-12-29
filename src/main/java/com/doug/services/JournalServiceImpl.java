@@ -56,7 +56,7 @@ public class JournalServiceImpl implements JournalService {
 
         if (sortDirection == null) {
             sort = new Sort(Sort.Direction.ASC, sortColumn);
-        } else if (sortDirection.equals("DESC")) {
+        } else if (sortDirection.equals("desc")) {
             sort = new Sort(Sort.Direction.DESC, sortColumn);
         } else {
             sort = new Sort(Sort.Direction.ASC, sortColumn);

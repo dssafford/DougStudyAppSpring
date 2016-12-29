@@ -9,37 +9,21 @@
 </head>
 <body>
 <div class="container">
-    <!--<dt class="bookHeadline">-->
-    <!--<span th:text="Bookie">Title</span> by-->
-    <!--<span th:text="Baby">Author</span>-->
-    <!--(ISBN: <span th:text="booboo">ISBN</span>)-->
-    <!--</dt>-->
-    <!--<dd class="bookDescription">-->
-    <!--<span th:text="mybook">Description</span> by-->
-    <!--<span th:text="eatshit">-->
-    <!--No description available</span>-->
-    <!--</dd>-->
     <th:block th:include="fragments/header :: header"></th:block>
-
-
-    <!--<ol>-->
-    <!--<li th:each="journal, it : ${journals}" th:with="index = ${it.count}" th:text="${journal.id + ' - ' + journal.project}" th:value="${1 * journals.size + index}">Id</li>-->
-    <!--</ol>-->
-
 
     <div th:if="${not #lists.isEmpty(journals)}">
         <h2 class="formHeader">Journal List</h2>
-        <div>Sort Column: <span th:text="${sortProperties.sortColumn}">text</span></div>
-        <div>Sort Direction: <span th:text="${sortProperties.sortDirection}">text</span></div>
+        <!--<div>Sort Column: <span th:text="${sortProperties.sortColumn}">text</span></div>-->
+        <!--<div>Sort Direction: <span th:text="${sortProperties.sortDirection}">text</span></div>-->
         <form class="form-horizontal" th:object="${sortProperty}" th:action="@{/doSort}" method="post">
 
-            <select th:name="queryEatShit">
-                <option th:value="id" th:selected="(${sortProperties.sortColumn}=='id')"> id</option>
-                <option th:value="machine" th:selected="(${sortProperties.sortColumn}=='machine')">machine</option>
-                <option th:value="project" th:selected="(${sortProperties.sortColumn}=='project')"> project</option>
-                <option th:value="directory" th:selected="(${sortProperties.sortColumn}=='directory')">directory</option>
+            <!--<select th:name="queryEatShit">-->
+                <!--<option th:value="id" th:selected="(${sortProperties.sortColumn}=='id')"> id</option>-->
+                <!--<option th:value="machine" th:selected="(${sortProperties.sortColumn}=='machine')">machine</option>-->
+                <!--<option th:value="project" th:selected="(${sortProperties.sortColumn}=='project')"> project</option>-->
+                <!--<option th:value="directory" th:selected="(${sortProperties.sortColumn}=='directory')">directory</option>-->
 
-            </select>
+            <!--</select>-->
             <div class="form-group">
                 <label class="col-sm-5 control-label" th:align="left">Sort By:</label>
 
@@ -52,8 +36,8 @@
                 </select>
                 <button th:type="submit">Sort</button>
                 <div class="shit">
-                    <input type="radio" name="sortDirection" value="ASC" th:checked="(${sortProperties.sortDirection}=='ASC')"> Ascending</input>
-                    <input type="radio" name="sortDirection" value="DESC" th:checked="(${sortProperties.sortDirection}=='DESC')"> Descending</input>
+                    <input type="radio" name="sortDirection" value="asc" th:checked="(${sortProperties.sortDirection}=='asc')"> Ascending</input>
+                    <input type="radio" name="sortDirection" value="desc" th:checked="(${sortProperties.sortDirection}=='desc')"> Descending</input>
                 </div>
             </div>
 
@@ -69,7 +53,7 @@
                         </a>
                     </li>
                     <li th:each="page : ${#numbers.sequence(0, total - 1)}"><a
-                            th:href="@{/journal/paging(page=${page},size=${journals.size})}"
+                            th:href="@{/journal/paging(page=${page},size=${journals.size}, sortColumn=${sortProperties.sortColumn}, sortDirection=${sortProperties.sortDirection})}"
                             th:text="${page + 1}">1</a>
                     </li>
                     <li th:if="${journals.hasNext()}">
@@ -83,14 +67,24 @@
             <div class="panel-body">
                 <table class="table table-bordered" bgcolor="#f0f8ff">
                     <tr>
-                        <th>ID</th>
-                        <th>Machine</th>
-                        <th>Project</th>
-                        <th>Directory</th>
-                        <th>Comments</th>
-                        <th>View</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th class="col-sm-1">ID</th>
+                        <th class="col-sm-1">Machine</th>
+                        <th class="col-sm-2">Project</th>
+                        <th class="col-sm-4">Directory</th>
+                        <th class="col-sm-5">Comments</th>
+                        <th class="col-sm-1">View</th>
+                        <th class="col-sm-1">Edit</th>
+                        <th class="col-sm-1">Delete</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="text" th:name="machineQuery" th:value="machine"></input></td>
+                        <td><input type="text" th:name="machineQuery" th:value="project"></input></td>
+                        <td><input type="text" th:name="machineQuery" th:value="directory"></input></td>
+                        <td><input type="text" th:name="machineQuery" th:value="comments"></input></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <tr th:each="journal : ${journals}">
                         <td th:text="${journal.id}"><a href="/journals/${journal.id}">Id</a></td>
@@ -98,7 +92,7 @@
                         <td th:text="${journal.project}">project</td>
                         <td th:text="${journal.directory}">directory</td>
                         <td th:text="${journal.comments}">comments</td>
-                        <td><a th:href="${ '/journal/' + journal.id}">View</a></td>
+                        <td><a th:href="${'/journal/' + journal.id}">View</a></td>
                         <td><a th:href="${'/journal/edit/' + journal.id}">Edit</a></td>
                         <td><a th:href="${'/journal/delete/' + journal.id}">Delete</a></td>
                     </tr>

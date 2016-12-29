@@ -10,10 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -31,7 +28,7 @@ public class JournalController {
 
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String testPaging(Pageable pageable, Model model) {
+    public String testPaging(@RequestParam(value="name", defaultValue="World") String name, Pageable pageable, Model model) {
 
         TestSort testSort = new TestSort();
         testSort.setResult("machine&machine.dir=asc");
@@ -42,20 +39,20 @@ public class JournalController {
         return "journal/journalsPagingWorking";
     }
 
+
+
     @RequestMapping(value="/journal/paging",method=RequestMethod.GET)
-    public String journalPaging(Pageable pageable, Model model, @ModelAttribute SortProperties sortProperties) {
+    public String journalPaging(@RequestParam(value="sortColumn", defaultValue="id") String sortColumn,
+                                @RequestParam(value="sortDirection", defaultValue="asc") String sortDirection,
+                                Pageable pageable, Model model) {
+
         counter = counter +1;
-//        pageable.first();
 
-//        if(sortProperties.getsortColumn()==null) {
-//            sortProperties.setsortColumn("id");
-//        }
-//        if(sortProperties.getSortDirection()==null) {
-//            sortProperties.setSortDirection("ASC");
-//        }
+        SortProperties sortProperties = new SortProperties();
+        sortProperties.sortColumn = sortColumn;
+        sortProperties.sortDirection = sortDirection;
 
-        model.addAttribute("journals", journalService.listAllByPage(pageable, sortProperties.getsortColumn(),
-                sortProperties.getSortDirection()));
+        model.addAttribute("journals", journalService.listAllByPage(pageable, sortColumn, sortDirection));
 
         model.addAttribute(sortProperties);
 

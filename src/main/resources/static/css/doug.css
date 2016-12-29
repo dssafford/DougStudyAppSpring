@@ -18,6 +18,14 @@ body {
 .shit {
 	color: whitesmoke;
 }
+
+table { table-layout: fixed;
+}
+
+table th, table td {
+		overflow: hidden;
+}
+
 @media (min-width: 768px) {
 	.navbar-text {
 		/*margin-left:-3px;*/
