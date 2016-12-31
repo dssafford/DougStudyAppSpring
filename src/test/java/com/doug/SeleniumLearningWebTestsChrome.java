@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-//import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,11 +26,10 @@ import static org.junit.Assert.assertEquals;
 @ActiveProfiles("dev")
 public class SeleniumLearningWebTestsChrome {
 
-    //private static FirefoxDriver browser;
 
-    //private static FirefoxDriver driver;
+    private static FirefoxDriver browser;
 
-    private static ChromeDriver browser;
+    //private static ChromeDriver browser;
 
     @Value("${local.server.port}")
     private int port;
@@ -38,8 +37,12 @@ public class SeleniumLearningWebTestsChrome {
     @BeforeClass
     public static void openBrowser() {
         System.setProperty("webdriver.chrome.driver", new File("drivers/chromedriver").getAbsolutePath());
+        System.setProperty("webdriver.gecko.driver", new File("drivers/geckodriver").getAbsolutePath());
+
         //browser = new FirefoxDriver();
-        browser = new ChromeDriver();
+        //browser = new ChromeDriver();
+
+        browser= new FirefoxDriver();
 
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
