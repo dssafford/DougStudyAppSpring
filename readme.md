@@ -18,3 +18,8 @@ make sure that all junit files use profile=dev or "edit configurations"
 = -Dspring.profiles.active=dev -ea
 
 ** must set active profile in all cases
+
+
+For Selenium testing with Firefox must use firefox 46, still, get a connection
+error on localhost otherwise.  Selenium 3 and chrome works and selenium 3 and
+firefox.

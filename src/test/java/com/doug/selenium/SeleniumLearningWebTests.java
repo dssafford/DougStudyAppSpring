@@ -1,5 +1,6 @@
-package com.doug;
+package com.doug.selenium;
 
+import com.doug.DougStudyAppSpringApplication;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -7,7 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,35 +15,27 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
 
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes=DougStudyAppSpringApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("dev")
-public class SeleniumLearningWebTestsChrome {
-
+public class SeleniumLearningWebTests {
 
     private static FirefoxDriver browser;
 
-    //private static ChromeDriver browser;
+    private static FirefoxDriver driver;
 
     @Value("${local.server.port}")
     private int port;
 
     @BeforeClass
     public static void openBrowser() {
-        System.setProperty("webdriver.chrome.driver", new File("drivers/chromedriver").getAbsolutePath());
-        System.setProperty("webdriver.gecko.driver", new File("drivers/geckodriver").getAbsolutePath());
-
-        //browser = new FirefoxDriver();
-        //browser = new ChromeDriver();
-
-        browser= new FirefoxDriver();
-
+        browser = new FirefoxDriver();
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
@@ -76,10 +68,8 @@ public class SeleniumLearningWebTestsChrome {
     }
 
     @Test
-    public void loginSubmitGoodTestChrome() {
+    public void loginSubmitGoodTest() {
 //        Ensure that we don't get an exception for good login
-        Integer i = 0;
-
         String baseUrl = "http://localhost:" + port + "/login";
         browser.get(baseUrl);
 

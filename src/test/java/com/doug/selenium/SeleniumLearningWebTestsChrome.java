@@ -1,5 +1,6 @@
-package com.doug;
+package com.doug.selenium;
 
+import com.doug.DougStudyAppSpringApplication;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -7,34 +8,36 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes=DougStudyAppSpringApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("dev")
-public class SeleniumLearningWebTests {
+public class SeleniumLearningWebTestsChrome {
 
-    private static FirefoxDriver browser;
 
-    private static FirefoxDriver driver;
+    private static ChromeDriver browser;
 
     @Value("${local.server.port}")
     private int port;
 
     @BeforeClass
     public static void openBrowser() {
-        browser = new FirefoxDriver();
+        System.setProperty("webdriver.chrome.driver", new File("drivers/chromedriver").getAbsolutePath());
+
+        browser = new ChromeDriver();
+
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
@@ -45,6 +48,8 @@ public class SeleniumLearningWebTests {
 
 
         browser.get(baseUrl);
+
+
         browser.findElement(By.id("ss")).clear();
         browser.findElement(By.id("ss")).sendKeys("London");
         //browser.findElement(By.cssSelector("button.sb-searchbox__button.")).click();
@@ -67,9 +72,19 @@ public class SeleniumLearningWebTests {
     }
 
     @Test
-    public void loginSubmitGoodTest() {
+    public void SimpleDriverTest() {
+        String baseUrl = "http://www.google.com";
+        browser.get(baseUrl);
+    }
+
+
+    @Test
+    public void loginSubmitGoodTestChrome() {
 //        Ensure that we don't get an exception for good login
+        Integer i = 0;
+
         String baseUrl = "http://localhost:" + port + "/login";
+
         browser.get(baseUrl);
 
         browser.findElementByName("username").sendKeys("doug");
