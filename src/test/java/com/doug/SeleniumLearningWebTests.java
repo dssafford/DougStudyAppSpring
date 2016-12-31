@@ -5,8 +5,10 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -25,6 +27,8 @@ public class SeleniumLearningWebTests {
 
     private static FirefoxDriver browser;
 
+    private static FirefoxDriver driver;
+
     @Value("${local.server.port}")
     private int port;
 
@@ -35,6 +39,33 @@ public class SeleniumLearningWebTests {
     }
 
     @Ignore
+    @Test
+    public void bookFirstTestRecorded() {
+        String baseUrl = "http://booking.com";
+
+
+        browser.get(baseUrl);
+        browser.findElement(By.id("ss")).clear();
+        browser.findElement(By.id("ss")).sendKeys("London");
+        //browser.findElement(By.cssSelector("button.sb-searchbox__button.")).click();
+        browser.findElement(By.cssSelector("div.sb-date-field__display")).click();
+        browser.findElement(By.cssSelector("div.sb-date-field__display")).click();
+        browser.findElement(By.xpath("//form[@id='frm']/div[4]/div/div/div/div[2]/div[2]/div[2]/div[3]/div/div/div/table/tbody/tr[5]/td[7]/span")).click();
+        browser.findElement(By.xpath("//form[@id='frm']/div[4]/div/div/div[2]/div[2]/div/div/div[2]")).click();
+        browser.findElement(By.cssSelector("td.c2-day.c2-day-s-hilighted")).click();
+        new Select(browser.findElement(By.id("group_adults"))).selectByVisibleText("1");
+        new Select(browser.findElement(By.id("group_children"))).selectByVisibleText("1");
+        browser.findElement(By.cssSelector("#group_children > option[value=\"1\"]")).click();
+        browser.findElement(By.name("age")).click();
+        new Select(browser.findElement(By.name("age"))).selectByVisibleText("10");
+        browser.findElement(By.cssSelector("select[name=\"age\"] > option[value=\"10\"]")).click();
+        browser.findElement(By.xpath("//div[@id='filter_review']/div[2]/a[2]")).click();
+        browser.findElement(By.cssSelector("button.sb-searchbox__button.")).click();
+
+
+
+    }
+
     @Test
     public void loginSubmitGoodTest() {
 //        Ensure that we don't get an exception for good login
@@ -51,13 +82,12 @@ public class SeleniumLearningWebTests {
         assertEquals("http://localhost:" + port + "/login", browser.getCurrentUrl());
 
         browser.findElementByTagName("form").submit();
-
+        assertEquals(1,1);
         assertEquals("http://localhost:" + port + "/", browser.getCurrentUrl());
 
 
     }
 
-    @Ignore
     @Test
     public void differentWaysToUseDriverAndFindElements() {
         String baseUrl = "http://localhost:" + port + "/login";
@@ -79,20 +109,19 @@ public class SeleniumLearningWebTests {
 
     }
 
-    @Ignore
-    @Test
-    public void findByCSSSelector() {
-
-        String baseUrl = "http://localhost:" + port + "/login";
-        browser.get(baseUrl);
-
-
-        WebElement dl =
-                browser.findElementByCssSelector("div.dougOne");
-        assertEquals("Hey You",
-                dl.getText());
-
-    }
+//    @Test
+//    public void findByCSSSelector() {
+//
+//        String baseUrl = "http://localhost:" + port + "/login";
+//        browser.get(baseUrl);
+//
+//
+//        WebElement dl =
+//                browser.findElementByCssSelector("div.dougOne");
+//        assertEquals("Hey You",
+//                dl.getText());
+//
+//    }
 
     @AfterClass
     public static void closeBrowser() {
