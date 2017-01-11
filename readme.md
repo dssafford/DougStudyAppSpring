@@ -23,3 +23,10 @@ make sure that all junit files use profile=dev or "edit configurations"
 For Selenium testing with Firefox must use firefox 46, still, get a connection
 error on localhost otherwise.  Selenium 3 and chrome works and selenium 3 and
 firefox.
+
+Note: Error creating bean with name 'entityManagerFactory' defined in class path resource , 
+happens when there isn't mysql started or a database ready, so you have to set the profile 
+to bootstrap, and ddl to CREATE.  then after the first run go to VALIDATE on ddl
+and 
+
+Note: change in profile goes off of application.properties, not intellij command line...

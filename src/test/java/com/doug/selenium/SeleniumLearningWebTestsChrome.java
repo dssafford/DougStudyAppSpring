@@ -2,7 +2,7 @@ package com.doug.selenium;
 
 import com.doug.DougStudyAppSpringApplication;
 import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,6 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes=DougStudyAppSpringApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("dev")
@@ -32,8 +31,9 @@ public class SeleniumLearningWebTestsChrome {
     @Value("${local.server.port}")
     private int port;
 
-    @BeforeClass
-    public static void openBrowser() {
+
+    @Before
+    public void openBrowser() {
         System.setProperty("webdriver.chrome.driver", new File("drivers/chromedriver").getAbsolutePath());
 
         browser = new ChromeDriver();
@@ -49,13 +49,12 @@ public class SeleniumLearningWebTestsChrome {
 
         browser.get(baseUrl);
 
-
+        browser.findElement(By.id("ss")).click();
         browser.findElement(By.id("ss")).clear();
-        browser.findElement(By.id("ss")).sendKeys("London");
-        //browser.findElement(By.cssSelector("button.sb-searchbox__button.")).click();
-        browser.findElement(By.cssSelector("div.sb-date-field__display")).click();
-        browser.findElement(By.cssSelector("div.sb-date-field__display")).click();
-        browser.findElement(By.xpath("//form[@id='frm']/div[4]/div/div/div/div[2]/div[2]/div[2]/div[3]/div/div/div/table/tbody/tr[5]/td[7]/span")).click();
+        browser.findElement(By.id("ss")).sendKeys("london");
+        browser.findElement(By.cssSelector("i.sb-date-field__chevron.bicon-downchevron")).click();
+        browser.findElement(By.xpath("//input[@name='sb_travel_purpose'])[2]")).click();
+
         browser.findElement(By.xpath("//form[@id='frm']/div[4]/div/div/div[2]/div[2]/div/div/div[2]")).click();
         browser.findElement(By.cssSelector("td.c2-day.c2-day-s-hilighted")).click();
         new Select(browser.findElement(By.id("group_adults"))).selectByVisibleText("1");
@@ -137,6 +136,8 @@ public class SeleniumLearningWebTestsChrome {
 //                dl.getText());
 //
 //    }
+
+
 
     @AfterClass
     public static void closeBrowser() {
