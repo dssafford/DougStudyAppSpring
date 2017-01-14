@@ -6,6 +6,6 @@ applications:
   instances: 1
   disk_quota: 512M
 #  domain: localhost
-  services:
-    - my-spring-db
-#    - mysql
+#  services:
+             #    - dougmysql
+             ##    - mysql
