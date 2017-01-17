@@ -6,7 +6,10 @@ import com.doug.domain.SortProperties;
 import com.doug.domain.TestSort;
 import com.doug.services.JournalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,25 +42,59 @@ public class JournalController {
         return "journal/journalsPagingWorking";
     }
 
-
-
-    @RequestMapping(value="/journal/paging",method=RequestMethod.GET)
-    public String journalPaging(@RequestParam(value="sortColumn", defaultValue="id") String sortColumn,
-                                @RequestParam(value="sortDirection", defaultValue="asc") String sortDirection,
+    @RequestMapping(value = "/journal/paging")
+    public String journalPaging(@RequestParam(value="sortDirection", defaultValue="null") String sortDirection,
+                                @RequestParam(value="sortProperty", defaultValue="null") String sortProperty,
+                                  @PageableDefault(size = 10, page = 0, sort = "machine",
+                                          direction = Sort.Direction.DESC)
                                 Pageable pageable, Model model) {
+        Sort.Order sortOrder; // = pageable.getSort().iterator().next();
+        //Sort.Direction mySortDirection = Sort.Direction();
 
-        counter = counter +1;
+        //SortProperties sortProperties = new SortProperties();
+//        sortProperties.sortColumn = sortColumn;
+//        sortProperties.sortDirection = sortDirection;
+//
+//        model.addAttribute("journals", journalService.listAllByPage(pageable, sortColumn, sortDirection));
+//
+//        model.addAttribute(sortProperties);
 
-        SortProperties sortProperties = new SortProperties();
-        sortProperties.sortColumn = sortColumn;
-        sortProperties.sortDirection = sortDirection;
 
-        model.addAttribute("journals", journalService.listAllByPage(pageable, sortColumn, sortDirection));
+        if(sortProperty.equals("null")) {
+            sortOrder = pageable.getSort().iterator().next();
+        } else {
+            if(sortDirection.equals("ASC")) {
+                sortOrder = new Sort.Order(Sort.Direction.ASC, sortProperty);
+            } else {
+                sortOrder = new Sort.Order(Sort.Direction.DESC, sortProperty);
+            }
+        }
 
-        model.addAttribute(sortProperties);
+        Page<Journal> journals = journalService.listAllByPage(pageable);
+
+        model.addAttribute("journals", journals);
+        model.addAttribute("sortProperties", sortOrder); // keeping 'sortProperties' for now, too lazy to change html
 
         return "/journal/journalsPaging";
     }
+
+//    @RequestMapping(value="/journal/paging",method=RequestMethod.GET)
+//    public String journalPaging(@RequestParam(value="sortColumn", defaultValue="id") String sortColumn,
+//                                @RequestParam(value="sortDirection", defaultValue="asc") String sortDirection,
+//                                Pageable pageable, Model model) {
+//
+//        counter = counter +1;
+//
+//        SortProperties sortProperties = new SortProperties();
+//        sortProperties.sortColumn = sortColumn;
+//        sortProperties.sortDirection = sortDirection;
+//
+//        model.addAttribute("journals", journalService.listAllByPage(pageable, sortColumn, sortDirection));
+//
+//        model.addAttribute(sortProperties);
+//
+//        return "/journal/journalsPaging";
+//    }
 
     @RequestMapping(value = "/doSort", method = RequestMethod.POST)
     public String sortStuff(Pageable pageable, Model model, @ModelAttribute SortProperties sortProperties) {
