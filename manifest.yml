@@ -5,6 +5,7 @@ applications:
   memory: 1G
   instances: 1
   disk_quota: 512M
+#  path: /target/dougstudyappspring-0.0.1-SNAPSHOT.JAR
 #  domain: localhost
 #  services:
              #    - dougmysql
