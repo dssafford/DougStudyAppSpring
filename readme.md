@@ -30,6 +30,6 @@ to bootstrap, and ddl to CREATE.  then after the first run go to VALIDATE on ddl
 and 
 
 Note: change in profile goes off of application.properties, not intellij command line...
-ok, did this work?
+ok, did this work? how about now??
 
 added jenkins, cool, does this trigger???
