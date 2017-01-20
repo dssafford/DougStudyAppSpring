@@ -34,5 +34,5 @@ deploy:
       username: $USERNAME
       password: $PASSWORD
       tag: latest
-      repository: dssafford/DougStudyAppSpring
+      repository: dssafford/dougstudyappspring
       registry: https://registry.hub.docker.com
