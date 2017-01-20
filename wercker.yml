@@ -1,0 +1,34 @@
+# docker box definition
+box: java
+
+# defining the dev pipeline
+dev:
+  steps:
+    - script:
+      name: gradle bootRun
+      code: |
+        ./gradlew bootRun
+
+# Build definition
+build:
+  # The steps that will be executed on build
+  steps:
+      - script:
+        name: mvn clean install
+        code: |
+          mvn clean install
+          
+#    # A step that executes `gradle build` command
+#    - script:
+#        name: gradle build
+#        code: |
+#          ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR build
+
+deploy:
+  steps:
+    - internal/docker-push:
+      username: $USERNAME
+      password: $PASSWORD
+      tag: latest
+      repository: dssafford/DougStudyAppSpring
+      registry: https://registry.hub.docker.com
