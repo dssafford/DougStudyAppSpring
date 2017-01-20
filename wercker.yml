@@ -5,9 +5,13 @@ box: java
 dev:
   steps:
     - script:
-      name: gradle bootRun
-      code: |
-        ./gradlew bootRun
+        name: mvn clean
+        goals: clean
+
+#    - script:
+#      name: gradle bootRun
+#      code: |
+#        ./gradlew bootRun
 
 # Build definition
 build:
@@ -15,9 +19,9 @@ build:
   steps:
       - script:
         name: mvn clean install
-        code: |
-          mvn clean install
-          
+        goals: install
+#          mvn -Pdefault clean package -Dmaven.test.skip=true
+
 #    # A step that executes `gradle build` command
 #    - script:
 #        name: gradle build
