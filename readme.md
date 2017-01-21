@@ -33,3 +33,5 @@ Note: change in profile goes off of application.properties, not intellij command
 ok, did this work? how about now??adsfasdfasdfadsfasdfsd
 
 added jenkins, cool, does this trigger???
+
+Got Jenkins and wercker down.  And one line login, one line push...
